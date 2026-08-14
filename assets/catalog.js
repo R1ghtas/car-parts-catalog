@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       model: "MODELIS",
       item: "DETALĖ",
-      barcode: "BRŪKŠNINIS KODAS",
+      barcode: "DETALĖS KODAS",
       available: "TURIME",
       photo: "NUOTRAUKA",
 
