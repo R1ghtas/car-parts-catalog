@@ -5,12 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================= */
 
   const translations = {
+
     lt: {
+
       browseParts: "Peržiūrėti dalis",
       partsCatalog: "DALIŲ KATALOGAS",
       heroTitle: "Raskite jums reikalingą detalę.",
+
       heroDescription:
-        "Pasirinkite kategoriją ir peržiūrėkite turimas automobilių dalis. Kataloge rasite automobilio modelį, detalės pavadinimą, brūkšninį kodą ir nuotrauką.",
+        "Pasirinkite kategoriją ir peržiūrėkite turimas automobilių dalis. Kataloge rasite automobilio modelį, detalės pavadinimą, detalės kodą, informaciją apie likutį ir nuotrauką.",
 
       categories: "KATEGORIJOS",
       choosePart: "Pasirinkite detalę",
@@ -30,23 +33,78 @@ document.addEventListener("DOMContentLoaded", () => {
 
       viewCatalog: "Peržiūrėti katalogą",
 
-      footerText: "Automobilių dalių katalogas ",
+      footerText: "Automobilių dalių katalogas",
+
+      allCategories: "Visos kategorijos",
+      catalog: "Katalogas",
+      availableParts: "TURIMOS DALYS",
+
+      categoryDescription:
+        "Priekiniai ir galiniai bamperiai. Spustelėkite bet kurią nuotrauką, kad atidarytumėte didesnę peržiūrą.",
 
       model: "MODELIS",
       item: "DETALĖ",
       barcode: "DETALĖS KODAS",
+      stock: "LIKUTIS",
       available: "TURIME",
       photo: "NUOTRAUKA",
 
-      searchPlaceholder: "Ieškoti modelio, detalės arba kodo"
+      inStock: "Yra sandėlyje",
+      outStock: "Nėra sandėlyje",
+
+      searchPlaceholder:
+        "Ieškoti modelio, detalės arba detalės kodo",
+
+      /* BUMPERS */
+
+      frontBumper: "Priekinis bamperis",
+
+      rearBumper: "Galinis bamperis",
+
+      reinforcementFrontBumper:
+        "Priekinio bamperio sutvirtinimas",
+
+      reinforcementBracketRight:
+        "Sutvirtinimo laikiklis dešinėje pusėje",
+
+      reinforcementBracketLeft:
+        "Sutvirtinimo laikiklis kairėje pusėje",
+
+      lowerReinforcement:
+        "Apatinis sutvirtinimas",
+
+      lowerReinforcementBracket:
+        "Apatinio sutvirtinimo laikiklis kairėje ir dešinėje pusėje",
+
+      lowerLipFrontBumper:
+        "Priekinio bamperio apatinė lūpa",
+
+      lowerPartFrontBumper:
+        "Priekinio bamperio apatinė dalis",
+
+      bumperSideRight:
+        "Bamperio šoninė dalis dešinėje",
+
+      bumperSideLeft:
+        "Bamperio šoninė dalis kairėje",
+
+      bumperHolderRight:
+        "Bamperio laikiklis dešinėje pusėje",
+
+      bumperHolderLeft:
+        "Bamperio laikiklis kairėje pusėje"
+
     },
 
+
     en: {
+
       browseParts: "Browse parts",
       partsCatalog: "PARTS CATALOG",
       heroTitle: "Find the part you need.",
+
       heroDescription:
-        "Choose a category to browse available car parts. Each catalog shows the vehicle model, item name, barcode and photo.",
+        "Choose a category to browse available car parts. Each catalog shows the vehicle model, item name, part code, availability and photo.",
 
       categories: "CATEGORIES",
       choosePart: "Choose a part",
@@ -66,16 +124,69 @@ document.addEventListener("DOMContentLoaded", () => {
 
       viewCatalog: "View catalog",
 
-      footerText: "Car Parts Catalog ",
+      footerText: "Car Parts Catalog",
+
+      allCategories: "All categories",
+      catalog: "Catalog",
+      availableParts: "AVAILABLE PARTS",
+
+      categoryDescription:
+        "Front and rear bumpers. Click any photo to open a larger preview.",
 
       model: "MODEL",
       item: "ITEM",
-      barcode: "BARCODE",
+      barcode: "PART CODE",
+      stock: "AVAILABILITY",
       available: "AVAILABLE",
       photo: "PHOTO",
 
-      searchPlaceholder: "Search model, item or barcode"
+      inStock: "Available",
+      outStock: "Out of stock",
+
+      searchPlaceholder:
+        "Search model, item or part code",
+
+      /* BUMPERS */
+
+      frontBumper: "Front Bumper",
+
+      rearBumper: "Rear Bumper",
+
+      reinforcementFrontBumper:
+        "Reinforcement front bumper",
+
+      reinforcementBracketRight:
+        "Bracket for reinforcement right side",
+
+      reinforcementBracketLeft:
+        "Bracket for reinforcement left side",
+
+      lowerReinforcement:
+        "Lower reinforcement",
+
+      lowerReinforcementBracket:
+        "Bracket for lower reinforcement left and right side",
+
+      lowerLipFrontBumper:
+        "Lower lip front bumper",
+
+      lowerPartFrontBumper:
+        "Lower part front bumper",
+
+      bumperSideRight:
+        "Bumper side part right",
+
+      bumperSideLeft:
+        "Bumper side part left",
+
+      bumperHolderRight:
+        "Bumper holder right side",
+
+      bumperHolderLeft:
+        "Bumper holder left side"
+
     }
+
   };
 
 
@@ -83,35 +194,100 @@ document.addEventListener("DOMContentLoaded", () => {
      LANGUAGE SWITCHER
      ========================= */
 
-  const languageSelect = document.getElementById("languageSelect");
+  const languageSelect =
+    document.getElementById("languageSelect");
+
 
   function setLanguage(language) {
 
     document.documentElement.lang = language;
 
-    document.querySelectorAll("[data-i18n]").forEach((element) => {
 
-      const key = element.getAttribute("data-i18n");
+    document
+      .querySelectorAll("[data-i18n]")
+      .forEach((element) => {
 
-      if (translations[language] && translations[language][key]) {
-        element.textContent = translations[language][key];
-      }
+        const key =
+          element.getAttribute("data-i18n");
 
-    });
+        if (
+          translations[language] &&
+          translations[language][key]
+        ) {
 
+          element.textContent =
+            translations[language][key];
 
-    document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+        }
 
-      const key = element.getAttribute("data-i18n-placeholder");
-
-      if (translations[language] && translations[language][key]) {
-        element.placeholder = translations[language][key];
-      }
-
-    });
+      });
 
 
-    localStorage.setItem("catalogLanguage", language);
+    document
+      .querySelectorAll("[data-i18n-placeholder]")
+      .forEach((element) => {
+
+        const key =
+          element.getAttribute("data-i18n-placeholder");
+
+        if (
+          translations[language] &&
+          translations[language][key]
+        ) {
+
+          element.placeholder =
+            translations[language][key];
+
+        }
+
+      });
+
+
+    /* =========================
+       STOCK TRANSLATION
+       ========================= */
+
+    document
+      .querySelectorAll("[data-stock]")
+      .forEach((element) => {
+
+        if (element.dataset.stock === "in") {
+
+          element.textContent =
+            translations[language].inStock;
+
+        }
+
+
+        if (element.dataset.stock === "out") {
+
+          element.textContent =
+            translations[language].outStock;
+
+        }
+
+      });
+
+
+    localStorage.setItem(
+      "catalogLanguage",
+      language
+    );
+
+
+    /* Update search result count language */
+
+    const search =
+      document.getElementById("catalogSearch");
+
+    if (search) {
+
+      search.dispatchEvent(
+        new Event("input")
+      );
+
+    }
+
   }
 
 
@@ -120,14 +296,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedLanguage =
       localStorage.getItem("catalogLanguage") || "lt";
 
-    languageSelect.value = savedLanguage;
 
-    setLanguage(savedLanguage);
+    languageSelect.value =
+      savedLanguage;
 
 
-    languageSelect.addEventListener("change", (event) => {
-      setLanguage(event.target.value);
-    });
+    setLanguage(
+      savedLanguage
+    );
+
+
+    languageSelect.addEventListener(
+      "change",
+      (event) => {
+
+        setLanguage(
+          event.target.value
+        );
+
+      }
+    );
 
   }
 
@@ -136,65 +324,109 @@ document.addEventListener("DOMContentLoaded", () => {
      IMAGE MODAL
      ========================= */
 
-  const modal = document.getElementById("imageModal");
-  const modalImage = document.getElementById("modalImage");
-  const closeButton = document.getElementById("modalClose");
+  const modal =
+    document.getElementById("imageModal");
+
+  const modalImage =
+    document.getElementById("modalImage");
+
+  const closeButton =
+    document.getElementById("modalClose");
+
 
   if (modal && modalImage) {
 
-    document.querySelectorAll(".thumb-button").forEach((button) => {
+    document
+      .querySelectorAll(".thumb-button")
+      .forEach((button) => {
 
-      button.addEventListener("click", () => {
+        button.addEventListener(
+          "click",
+          () => {
 
-        const image = button.querySelector("img");
+            const image =
+              button.querySelector("img");
 
-        if (!image) return;
 
-        modalImage.src = image.src;
-        modalImage.alt = image.alt;
+            if (!image) return;
 
-        modal.classList.add("open");
 
-        document.body.style.overflow = "hidden";
+            modalImage.src =
+              image.src;
+
+            modalImage.alt =
+              image.alt;
+
+
+            modal.classList.add(
+              "open"
+            );
+
+
+            document.body.style.overflow =
+              "hidden";
+
+          }
+        );
+
       });
-
-    });
 
 
     const closeModal = () => {
 
-      modal.classList.remove("open");
+      modal.classList.remove(
+        "open"
+      );
+
 
       modalImage.src = "";
 
-      document.body.style.overflow = "";
+
+      document.body.style.overflow =
+        "";
+
     };
 
 
     if (closeButton) {
-      closeButton.addEventListener("click", closeModal);
+
+      closeButton.addEventListener(
+        "click",
+        closeModal
+      );
+
     }
 
 
-    modal.addEventListener("click", (event) => {
+    modal.addEventListener(
+      "click",
+      (event) => {
 
-      if (event.target === modal) {
-        closeModal();
+        if (event.target === modal) {
+
+          closeModal();
+
+        }
+
       }
+    );
 
-    });
 
+    document.addEventListener(
+      "keydown",
+      (event) => {
 
-    document.addEventListener("keydown", (event) => {
+        if (
+          event.key === "Escape" &&
+          modal.classList.contains("open")
+        ) {
 
-      if (
-        event.key === "Escape" &&
-        modal.classList.contains("open")
-      ) {
-        closeModal();
+          closeModal();
+
+        }
+
       }
-
-    });
+    );
 
   }
 
@@ -203,19 +435,29 @@ document.addEventListener("DOMContentLoaded", () => {
      CATALOG SEARCH
      ========================= */
 
-  const search = document.getElementById("catalogSearch");
-  const count = document.getElementById("resultCount");
+  const search =
+    document.getElementById("catalogSearch");
+
+  const count =
+    document.getElementById("resultCount");
+
 
   if (search) {
 
     const rows = [
-      ...document.querySelectorAll(".catalog-table tbody tr")
+      ...document.querySelectorAll(
+        ".catalog-table tbody tr"
+      )
     ];
 
 
     const applySearch = () => {
 
-      const term = search.value.trim().toLowerCase();
+      const term =
+        search.value
+          .trim()
+          .toLowerCase();
+
 
       let visible = 0;
 
@@ -223,9 +465,14 @@ document.addEventListener("DOMContentLoaded", () => {
       rows.forEach((row) => {
 
         const matches =
-          row.innerText.toLowerCase().includes(term);
+          row.innerText
+            .toLowerCase()
+            .includes(term);
 
-        row.style.display = matches ? "" : "none";
+
+        row.style.display =
+          matches ? "" : "none";
+
 
         if (matches) {
           visible++;
@@ -237,13 +484,21 @@ document.addEventListener("DOMContentLoaded", () => {
       if (count) {
 
         const language =
-          localStorage.getItem("catalogLanguage") || "lt";
+          localStorage.getItem(
+            "catalogLanguage"
+          ) || "lt";
+
 
         if (language === "lt") {
-          count.textContent = `${visible} vnt.`;
+
+          count.textContent =
+            `${visible} vnt.`;
+
         } else {
+
           count.textContent =
             `${visible} item${visible === 1 ? "" : "s"}`;
+
         }
 
       }
@@ -251,7 +506,11 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 
-    search.addEventListener("input", applySearch);
+    search.addEventListener(
+      "input",
+      applySearch
+    );
+
 
     applySearch();
 
