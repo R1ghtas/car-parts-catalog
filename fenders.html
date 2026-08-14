@@ -101,7 +101,7 @@
       id="catalogSearch"
       class="search"
       type="search"
-      placeholder="Search model, item or barcode..."
+      placeholder="Search model, item or part code..."
       data-i18n-placeholder="searchPlaceholder"
       aria-label="Search catalog"
     >
@@ -119,7 +119,7 @@
         <tr>
           <th data-i18n="model">Model</th>
           <th data-i18n="item">Item</th>
-          <th data-i18n="barcode">Barcode</th>
+          <th data-i18n="barcode">Part code</th>
           <th data-i18n="stock">Availability</th>
           <th data-i18n="photo">Photo</th>
         </tr>
@@ -130,7 +130,11 @@
 
         <tr>
           <td>Toyota Corolla Cross 2020–2024</td>
-          <td class="item-name">Front fender insert right side</td>
+
+          <td class="item-name" data-i18n="fenderInsertRight">
+            Front fender insert right side
+          </td>
+
           <td class="barcode">53875-16090</td>
 
           <td>
@@ -149,7 +153,11 @@
 
         <tr>
           <td>Toyota Corolla Cross 2020–2024</td>
-          <td class="item-name">Front fender insert left side</td>
+
+          <td class="item-name" data-i18n="fenderInsertLeft">
+            Front fender insert left side
+          </td>
+
           <td class="barcode">53876-16090</td>
 
           <td>
@@ -168,7 +176,11 @@
 
         <tr>
           <td>Toyota Corolla Cross 2020–2024</td>
-          <td class="item-name">Front Fender Right</td>
+
+          <td class="item-name" data-i18n="frontFenderRight">
+            Front Fender Right
+          </td>
+
           <td class="barcode">53801-16470</td>
 
           <td>
@@ -187,7 +199,11 @@
 
         <tr>
           <td>Toyota Prius Plus 2012-2015</td>
-          <td class="item-name">Front Fender Left</td>
+
+          <td class="item-name" data-i18n="frontFenderLeft">
+            Front Fender Left
+          </td>
+
           <td class="barcode">53801-16470</td>
 
           <td>
@@ -235,15 +251,26 @@ const catalogTranslations = {
     catalog: "Katalogas",
     fenders: "Sparnai",
     availableParts: "TURIMOS DALYS",
-    categoryDescription: "Priekinių ir galinių sparnų dalys. Spustelėkite bet kurią nuotrauką, kad atidarytumėte didesnę peržiūrą.",
-    searchPlaceholder: "Ieškoti modelio, detalės arba brūkšninio kodo...",
+
+    categoryDescription:
+      "Priekinių ir galinių sparnų dalys. Spustelėkite bet kurią nuotrauką, kad atidarytumėte didesnę peržiūrą.",
+
+    searchPlaceholder:
+      "Ieškoti modelio, detalės arba detalės kodo...",
+
     model: "MODELIS",
     item: "DETALĖ",
-    barcode: "BRŪKŠNINIS KODAS",
+    barcode: "DETALĖS KODAS",
     stock: "LIKUTIS",
     photo: "NUOTRAUKA",
+
     inStock: "Yra sandėlyje",
-    outStock: "Nėra sandėlyje"
+    outStock: "Nėra sandėlyje",
+
+    fenderInsertRight: "Priekinio sparno įdėklas dešinėje pusėje",
+    fenderInsertLeft: "Priekinio sparno įdėklas kairėje pusėje",
+    frontFenderRight: "Priekinis sparnas dešinėje",
+    frontFenderLeft: "Priekinis sparnas kairėje"
   },
 
   en: {
@@ -251,15 +278,26 @@ const catalogTranslations = {
     catalog: "Catalog",
     fenders: "Fenders",
     availableParts: "AVAILABLE PARTS",
-    categoryDescription: "Front and rear fender parts. Click any photo to open a larger preview.",
-    searchPlaceholder: "Search model, item or barcode...",
+
+    categoryDescription:
+      "Front and rear fender parts. Click any photo to open a larger preview.",
+
+    searchPlaceholder:
+      "Search model, item or part code...",
+
     model: "MODEL",
     item: "ITEM",
-    barcode: "BARCODE",
+    barcode: "PART CODE",
     stock: "AVAILABILITY",
     photo: "PHOTO",
+
     inStock: "Available",
-    outStock: "Out of stock"
+    outStock: "Out of stock",
+
+    fenderInsertRight: "Front fender insert right side",
+    fenderInsertLeft: "Front fender insert left side",
+    frontFenderRight: "Front Fender Right",
+    frontFenderLeft: "Front Fender Left"
   }
 
 };
