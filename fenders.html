@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fenders | Car Parts Catalog</title>
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    .catalog-table th:nth-child(1),
+    .catalog-table td:nth-child(1) { width: 28%; }
+
+    .catalog-table th:nth-child(2),
+    .catalog-table td:nth-child(2) { width: 25%; }
+
+    .catalog-table th:nth-child(3),
+    .catalog-table td:nth-child(3) { width: 17%; }
+
+    .catalog-table th:nth-child(4),
+    .catalog-table td:nth-child(4) { width: 17%; }
+
+    .catalog-table th:nth-child(5),
+    .catalog-table td:nth-child(5) { width: 13%; }
+
+    .stock-status {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 4px;
+      font-size: .82rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .in-stock {
+      background: #eef6ea;
+      color: #42752e;
+      border: 1px solid #d5e8cc;
+    }
+
+    .out-stock {
+      background: #f8ecec;
+      color: #a33b3b;
+      border: 1px solid #efd2d2;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+
+    <a href="index.html" class="brand">
+      <img src="logo.png" alt="SilentService logo" class="brand-logo">
+    </a>
+
+    <div class="header-actions">
+
+      <select id="languageSelect" class="language-select">
+        <option value="lt">lietuvių</option>
+        <option value="en">English</option>
+      </select>
+
+      <a class="button" href="index.html" data-i18n="allCategories">
+        All categories
+      </a>
+
+    </div>
+  </div>
+</header>
+
+
+<main class="container">
+
+  <div class="breadcrumb">
+    <a href="index.html" data-i18n="catalog">Catalog</a> /
+    <span data-i18n="fenders">Fenders</span>
+  </div>
+
+
+  <section class="catalog-head">
+
+    <div class="eyebrow" data-i18n="availableParts">
+      Available parts
+    </div>
+
+    <h1 data-i18n="fenders">
+      Fenders
+    </h1>
+
+    <p data-i18n="categoryDescription">
+      Front and rear fender parts. Click any photo to open a larger preview.
+    </p>
+
+  </section>
+
+
+  <div class="table-tools">
+
+    <input
+      id="catalogSearch"
+      class="search"
+      type="search"
+      placeholder="Search model, item or barcode..."
+      data-i18n-placeholder="searchPlaceholder"
+      aria-label="Search catalog"
+    >
+
+    <div id="resultCount" class="result-count"></div>
+
+  </div>
+
+
+  <div class="table-wrap">
+
+    <table class="catalog-table">
+
+      <thead>
+        <tr>
+          <th data-i18n="model">Model</th>
+          <th data-i18n="item">Item</th>
+          <th data-i18n="barcode">Barcode</th>
+          <th data-i18n="stock">Availability</th>
+          <th data-i18n="photo">Photo</th>
+        </tr>
+      </thead>
+
+
+      <tbody>
+
+        <tr>
+          <td>Toyota Corolla Cross 2020–2024</td>
+          <td class="item-name">Front fender insert right side</td>
+          <td class="barcode">53875-16090</td>
+
+          <td>
+            <span class="stock-status in-stock" data-stock="in">
+              Available
+            </span>
+          </td>
+
+          <td>
+            <button class="thumb-button" type="button" aria-label="Open photo of Front Fender Right">
+              <img src="images/fenders/part-1.jpg" alt="Toyota Corolla Cross 2020–2024 — Front Fender Right">
+            </button>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td>Toyota Corolla Cross 2020–2024</td>
+          <td class="item-name">Front fender insert left side</td>
+          <td class="barcode">53876-16090</td>
+
+          <td>
+            <span class="stock-status in-stock" data-stock="in">
+              Available
+            </span>
+          </td>
+
+          <td>
+            <button class="thumb-button" type="button" aria-label="Open photo of Front Fender Left">
+              <img src="images/fenders/part-2.jpg" alt="Toyota Corolla Cross 2020–2024 — Front Fender Left">
+            </button>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td>Toyota Corolla Cross 2020–2024</td>
+          <td class="item-name">Front Fender Right</td>
+          <td class="barcode">53801-16470</td>
+
+          <td>
+            <span class="stock-status in-stock" data-stock="in">
+              Available
+            </span>
+          </td>
+
+          <td>
+            <button class="thumb-button" type="button" aria-label="Open photo of Front Fender Right">
+              <img src="images/fenders/part-3.jpg" alt="Toyota Corolla Cross 2020–2024 — Front Fender Right">
+            </button>
+          </td>
+        </tr>
+
+
+        <tr>
+          <td>Toyota Prius Plus 2012-2015</td>
+          <td class="item-name">Front Fender Left</td>
+          <td class="barcode">53801-16470</td>
+
+          <td>
+            <span class="stock-status in-stock" data-stock="in">
+              Available
+            </span>
+          </td>
+
+          <td>
+            <button class="thumb-button" type="button" aria-label="Open photo of Front Fender Left">
+              <img src="images/fenders/part-4.jpg" alt="Toyota Prius Plus 2012-2015 — Front Fender Left">
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</main>
+
+
+<div id="imageModal" class="image-modal" aria-hidden="true">
+  <div class="modal-panel">
+    <button id="modalClose" class="modal-close" type="button" aria-label="Close image">×</button>
+    <img id="modalImage" class="modal-image" src="" alt="">
+  </div>
+</div>
+
+
+<footer class="footer">
+  <div class="container">Car Parts Catalog • Fenders</div>
+</footer>
+
+
+<script src="assets/catalog.js"></script>
+
+<script>
+const catalogTranslations = {
+
+  lt: {
+    allCategories: "Visos kategorijos",
+    catalog: "Katalogas",
+    fenders: "Sparnai",
+    availableParts: "TURIMOS DALYS",
+    categoryDescription: "Priekinių ir galinių sparnų dalys. Spustelėkite bet kurią nuotrauką, kad atidarytumėte didesnę peržiūrą.",
+    searchPlaceholder: "Ieškoti modelio, detalės arba brūkšninio kodo...",
+    model: "MODELIS",
+    item: "DETALĖ",
+    barcode: "BRŪKŠNINIS KODAS",
+    stock: "LIKUTIS",
+    photo: "NUOTRAUKA",
+    inStock: "Yra sandėlyje",
+    outStock: "Nėra sandėlyje"
+  },
+
+  en: {
+    allCategories: "All categories",
+    catalog: "Catalog",
+    fenders: "Fenders",
+    availableParts: "AVAILABLE PARTS",
+    categoryDescription: "Front and rear fender parts. Click any photo to open a larger preview.",
+    searchPlaceholder: "Search model, item or barcode...",
+    model: "MODEL",
+    item: "ITEM",
+    barcode: "BARCODE",
+    stock: "AVAILABILITY",
+    photo: "PHOTO",
+    inStock: "Available",
+    outStock: "Out of stock"
+  }
+
+};
+
+
+const languageSelect = document.getElementById("languageSelect");
+
+
+function setCatalogLanguage(language) {
+
+  document.documentElement.lang = language;
+
+
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+
+    const key = element.getAttribute("data-i18n");
+
+    if (catalogTranslations[language] && catalogTranslations[language][key]) {
+      element.textContent = catalogTranslations[language][key];
+    }
+
+  });
+
+
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+
+    const key = element.getAttribute("data-i18n-placeholder");
+
+    if (catalogTranslations[language] && catalogTranslations[language][key]) {
+      element.placeholder = catalogTranslations[language][key];
+    }
+
+  });
+
+
+  document.querySelectorAll("[data-stock]").forEach(element => {
+
+    if (element.dataset.stock === "in") {
+      element.textContent = catalogTranslations[language].inStock;
+    }
+
+    if (element.dataset.stock === "out") {
+      element.textContent = catalogTranslations[language].outStock;
+    }
+
+  });
+
+
+  localStorage.setItem("catalogLanguage", language);
+
+}
+
+
+const savedLanguage =
+  localStorage.getItem("catalogLanguage") || "lt";
+
+
+languageSelect.value = savedLanguage;
+
+setCatalogLanguage(savedLanguage);
+
+
+languageSelect.addEventListener("change", function () {
+  setCatalogLanguage(this.value);
+});
+</script>
+
+</body>
+</html>
