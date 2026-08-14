@@ -115,7 +115,7 @@
       id="catalogSearch"
       class="search"
       type="search"
-      placeholder="Search model, item or barcode..."
+      placeholder="Search model, item or part code..."
       data-i18n-placeholder="searchPlaceholder"
       aria-label="Search catalog"
     >
@@ -133,8 +133,8 @@
         <tr>
           <th data-i18n="model">Model</th>
           <th data-i18n="item">Item</th>
-          <th data-i18n="barcode">Barcode</th>
-          <th data-i18n="stock">Available</th>
+          <th data-i18n="barcode">Part code</th>
+          <th data-i18n="stock">Availability</th>
           <th data-i18n="photo">Photo</th>
         </tr>
       </thead>
@@ -142,10 +142,13 @@
 
       <tbody>
 
-
         <tr>
           <td>Toyota Prius Plus Facelift 2015</td>
-          <td class="item-name">Grille Top</td>
+
+          <td class="item-name" data-i18n="grilleTop">
+            Grille Top
+          </td>
+
           <td class="barcode">53111-47110</td>
 
           <td>
@@ -164,7 +167,11 @@
 
         <tr>
           <td>Toyota Prius Plus Facelift 2015</td>
-          <td class="item-name">Grille Bottom</td>
+
+          <td class="item-name" data-i18n="grilleBottom">
+            Grille Bottom
+          </td>
+
           <td class="barcode">53102-47180</td>
 
           <td>
@@ -183,7 +190,11 @@
 
         <tr>
           <td>Toyota Prius Plus 2012-2015</td>
-          <td class="item-name">Front Centre Grille</td>
+
+          <td class="item-name" data-i18n="frontCentreGrille">
+            Front Centre Grille
+          </td>
+
           <td class="barcode">53112-47050</td>
 
           <td>
@@ -202,7 +213,11 @@
 
         <tr>
           <td>Toyota Prius Plus 2012-2015</td>
-          <td class="item-name">Side Grille Right Side</td>
+
+          <td class="item-name" data-i18n="sideGrilleRight">
+            Side Grille Right Side
+          </td>
+
           <td class="barcode">81481-47050</td>
 
           <td>
@@ -221,7 +236,11 @@
 
         <tr>
           <td>Toyota Prius Plus 2012-2015</td>
-          <td class="item-name">Side Grille Left Side</td>
+
+          <td class="item-name" data-i18n="sideGrilleLeft">
+            Side Grille Left Side
+          </td>
+
           <td class="barcode">81482-47050</td>
 
           <td>
@@ -240,7 +259,11 @@
 
         <tr>
           <td>Toyota Corolla Cross 2020-2024</td>
-          <td class="item-name">Bumper front radiator grille</td>
+
+          <td class="item-name" data-i18n="bumperFrontRadiatorGrille">
+            Bumper front radiator grille
+          </td>
+
           <td class="barcode">53100-16020</td>
 
           <td>
@@ -259,7 +282,11 @@
 
         <tr>
           <td>Toyota Corolla Cross 2020-2024</td>
-          <td class="item-name">Front radiator grille molding</td>
+
+          <td class="item-name" data-i18n="frontRadiatorGrilleMolding">
+            Front radiator grille molding
+          </td>
+
           <td class="barcode">53121-16090</td>
 
           <td>
@@ -274,7 +301,6 @@
             </button>
           </td>
         </tr>
-
 
       </tbody>
 
@@ -316,15 +342,29 @@ const catalogTranslations = {
     catalog: "Katalogas",
     grilles: "Grotelės",
     availableParts: "TURIMOS DALYS",
-    categoryDescription: "Viršutinės, apatinės ir šoninės grotelės. Spustelėkite bet kurią nuotrauką, kad atidarytumėte didesnę peržiūrą.",
-    searchPlaceholder: "Ieškoti modelio, detalės arba brūkšninio kodo...",
+
+    categoryDescription:
+      "Viršutinės, apatinės ir šoninės grotelės. Spustelėkite bet kurią nuotrauką, kad atidarytumėte didesnę peržiūrą.",
+
+    searchPlaceholder:
+      "Ieškoti modelio, detalės arba detalės kodo...",
+
     model: "MODELIS",
     item: "DETALĖ",
-    barcode: "BRŪKŠNINIS KODAS",
+    barcode: "DETALĖS KODAS",
     stock: "LIKUTIS",
     photo: "NUOTRAUKA",
+
     inStock: "Yra sandėlyje",
-    outStock: "Nėra sandėlyje"
+    outStock: "Nėra sandėlyje",
+
+    grilleTop: "Viršutinės grotelės",
+    grilleBottom: "Apatinės grotelės",
+    frontCentreGrille: "Priekinės centrinės grotelės",
+    sideGrilleRight: "Šoninės grotelės dešinėje pusėje",
+    sideGrilleLeft: "Šoninės grotelės kairėje pusėje",
+    bumperFrontRadiatorGrille: "Priekinio bamperio radiatoriaus grotelės",
+    frontRadiatorGrilleMolding: "Priekinių radiatoriaus grotelių apdaila"
   },
 
 
@@ -333,21 +373,36 @@ const catalogTranslations = {
     catalog: "Catalog",
     grilles: "Grilles",
     availableParts: "AVAILABLE PARTS",
-    categoryDescription: "Upper, lower and side grilles. Click any photo to open a larger preview.",
-    searchPlaceholder: "Search model, item or barcode...",
+
+    categoryDescription:
+      "Upper, lower and side grilles. Click any photo to open a larger preview.",
+
+    searchPlaceholder:
+      "Search model, item or part code...",
+
     model: "MODEL",
     item: "ITEM",
-    barcode: "BARCODE",
+    barcode: "PART CODE",
     stock: "AVAILABILITY",
     photo: "PHOTO",
+
     inStock: "Available",
-    outStock: "Out of stock"
+    outStock: "Out of stock",
+
+    grilleTop: "Grille Top",
+    grilleBottom: "Grille Bottom",
+    frontCentreGrille: "Front Centre Grille",
+    sideGrilleRight: "Side Grille Right Side",
+    sideGrilleLeft: "Side Grille Left Side",
+    bumperFrontRadiatorGrille: "Bumper front radiator grille",
+    frontRadiatorGrilleMolding: "Front radiator grille molding"
   }
 
 };
 
 
-const languageSelect = document.getElementById("languageSelect");
+const languageSelect =
+  document.getElementById("languageSelect");
 
 
 function setCatalogLanguage(language) {
@@ -359,38 +414,58 @@ function setCatalogLanguage(language) {
 
     const key = element.getAttribute("data-i18n");
 
-    if (catalogTranslations[language] && catalogTranslations[language][key]) {
-      element.textContent = catalogTranslations[language][key];
+    if (
+      catalogTranslations[language] &&
+      catalogTranslations[language][key]
+    ) {
+
+      element.textContent =
+        catalogTranslations[language][key];
+
     }
 
   });
 
 
-  document.querySelectorAll("[data-i18n-placeholder]").forEach(element => {
+  document
+    .querySelectorAll("[data-i18n-placeholder]")
+    .forEach(element => {
 
-    const key = element.getAttribute("data-i18n-placeholder");
+      const key =
+        element.getAttribute("data-i18n-placeholder");
 
-    if (catalogTranslations[language] && catalogTranslations[language][key]) {
-      element.placeholder = catalogTranslations[language][key];
-    }
+      if (
+        catalogTranslations[language] &&
+        catalogTranslations[language][key]
+      ) {
 
-  });
+        element.placeholder =
+          catalogTranslations[language][key];
+
+      }
+
+    });
 
 
   document.querySelectorAll("[data-stock]").forEach(element => {
 
     if (element.dataset.stock === "in") {
-      element.textContent = catalogTranslations[language].inStock;
+      element.textContent =
+        catalogTranslations[language].inStock;
     }
 
     if (element.dataset.stock === "out") {
-      element.textContent = catalogTranslations[language].outStock;
+      element.textContent =
+        catalogTranslations[language].outStock;
     }
 
   });
 
 
-  localStorage.setItem("catalogLanguage", language);
+  localStorage.setItem(
+    "catalogLanguage",
+    language
+  );
 
 }
 
@@ -399,14 +474,26 @@ const savedLanguage =
   localStorage.getItem("catalogLanguage") || "lt";
 
 
-languageSelect.value = savedLanguage;
+languageSelect.value =
+  savedLanguage;
 
-setCatalogLanguage(savedLanguage);
+
+setCatalogLanguage(
+  savedLanguage
+);
 
 
-languageSelect.addEventListener("change", function () {
-  setCatalogLanguage(this.value);
-});
+languageSelect.addEventListener(
+  "change",
+  function () {
+
+    setCatalogLanguage(
+      this.value
+    );
+
+  }
+);
+
 </script>
 
 
