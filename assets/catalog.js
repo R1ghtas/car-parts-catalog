@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
       availableParts: "TURIMOS DALYS",
 
       categoryDescription:
-        "Priekiniai ir galiniai bamperiai. Spustelėkite bet kurią nuotrauką, kad atidarytumėte didesnę peržiūrą.",
+        "Spustelėkite bet kurią nuotrauką, kad atidarytumėte didesnę peržiūrą.",
 
       model: "MODELIS",
       item: "DETALĖ",
@@ -55,10 +55,17 @@ document.addEventListener("DOMContentLoaded", () => {
       searchPlaceholder:
         "Ieškoti modelio, detalės arba detalės kodo",
 
+      cart: "Krepšelis",
+      addToCart: "Pridėti į krepšelį",
+      yourOrder: "Jūsų užklausa",
+      sendOrder: "Siųsti užklausą",
+      clearCart: "Išvalyti",
+      remove: "Pašalinti",
+      emptyCart: "Krepšelis tuščias",
+
       /* BUMPERS */
 
       frontBumper: "Priekinis bamperis",
-
       rearBumper: "Galinis bamperis",
 
       reinforcementFrontBumper:
@@ -131,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
       availableParts: "AVAILABLE PARTS",
 
       categoryDescription:
-        "Front and rear bumpers. Click any photo to open a larger preview.",
+        "Click any photo to open a larger preview.",
 
       model: "MODEL",
       item: "ITEM",
@@ -146,10 +153,17 @@ document.addEventListener("DOMContentLoaded", () => {
       searchPlaceholder:
         "Search model, item or part code",
 
+      cart: "Cart",
+      addToCart: "Add to basket",
+      yourOrder: "Your order",
+      sendOrder: "Send order",
+      clearCart: "Clear cart",
+      remove: "Remove",
+      emptyCart: "Cart is empty",
+
       /* BUMPERS */
 
       frontBumper: "Front Bumper",
-
       rearBumper: "Rear Bumper",
 
       reinforcementFrontBumper:
@@ -198,9 +212,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("languageSelect");
 
 
+  function getLanguage() {
+
+    return localStorage.getItem(
+      "catalogLanguage"
+    ) || "lt";
+
+  }
+
+
   function setLanguage(language) {
 
-    document.documentElement.lang = language;
+    document.documentElement.lang =
+      language;
 
 
     document
@@ -209,6 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const key =
           element.getAttribute("data-i18n");
+
 
         if (
           translations[language] &&
@@ -228,7 +253,10 @@ document.addEventListener("DOMContentLoaded", () => {
       .forEach((element) => {
 
         const key =
-          element.getAttribute("data-i18n-placeholder");
+          element.getAttribute(
+            "data-i18n-placeholder"
+          );
+
 
         if (
           translations[language] &&
@@ -243,9 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
 
-    /* =========================
-       STOCK TRANSLATION
-       ========================= */
+    /* STOCK TRANSLATION */
 
     document
       .querySelectorAll("[data-stock]")
@@ -275,10 +301,14 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    /* Update search result count language */
+    updateCart();
+
 
     const search =
-      document.getElementById("catalogSearch");
+      document.getElementById(
+        "catalogSearch"
+      );
+
 
     if (search) {
 
@@ -294,7 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (languageSelect) {
 
     const savedLanguage =
-      localStorage.getItem("catalogLanguage") || "lt";
+      getLanguage();
 
 
     languageSelect.value =
@@ -378,9 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "open"
       );
 
-
       modalImage.src = "";
-
 
       document.body.style.overflow =
         "";
@@ -436,10 +464,14 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================= */
 
   const search =
-    document.getElementById("catalogSearch");
+    document.getElementById(
+      "catalogSearch"
+    );
 
   const count =
-    document.getElementById("resultCount");
+    document.getElementById(
+      "resultCount"
+    );
 
 
   if (search) {
@@ -484,9 +516,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (count) {
 
         const language =
-          localStorage.getItem(
-            "catalogLanguage"
-          ) || "lt";
+          getLanguage();
 
 
         if (language === "lt") {
@@ -515,5 +545,506 @@ document.addEventListener("DOMContentLoaded", () => {
     applySearch();
 
   }
+
+
+  /* =========================
+     SHOPPING CART
+     ========================= */
+
+  let cart =
+    JSON.parse(
+      localStorage.getItem(
+        "partsCart"
+      ) || "[]"
+    );
+
+
+  const cartButton =
+    document.getElementById(
+      "cartButton"
+    );
+
+  const cartPanel =
+    document.getElementById(
+      "cartPanel"
+    );
+
+  const cartItems =
+    document.getElementById(
+      "cartItems"
+    );
+
+  const cartCount =
+    document.getElementById(
+      "cartCount"
+    );
+
+  const closeCart =
+    document.getElementById(
+      "closeCart"
+    );
+
+  const clearCart =
+    document.getElementById(
+      "clearCart"
+    );
+
+  const sendOrder =
+    document.getElementById(
+      "sendOrder"
+    );
+
+
+  function saveCart() {
+
+    localStorage.setItem(
+      "partsCart",
+      JSON.stringify(cart)
+    );
+
+  }
+
+
+  function updateCart() {
+
+    if (!cartItems) return;
+
+
+    const language =
+      getLanguage();
+
+
+    const t =
+      translations[language];
+
+
+    cartItems.innerHTML = "";
+
+
+    let totalQuantity = 0;
+
+
+    cart.forEach(
+      (product, index) => {
+
+        totalQuantity +=
+          product.quantity;
+
+
+        const item =
+          document.createElement("div");
+
+
+        item.className =
+          "cart-item";
+
+
+        item.innerHTML = `
+
+          <div class="cart-item-info">
+
+            <strong>
+              ${product.item}
+            </strong>
+
+            <span>
+              ${product.model}
+            </span>
+
+            <span>
+              ${product.barcode}
+            </span>
+
+          </div>
+
+
+          <div class="cart-quantity">
+
+            <button
+              class="quantity-minus"
+              data-index="${index}">
+              −
+            </button>
+
+            <span>
+              ${product.quantity}
+            </span>
+
+            <button
+              class="quantity-plus"
+              data-index="${index}">
+              +
+            </button>
+
+          </div>
+
+
+          <button
+            class="remove-cart-item"
+            data-index="${index}">
+            ${t.remove}
+          </button>
+
+        `;
+
+
+        cartItems.appendChild(
+          item
+        );
+
+      }
+    );
+
+
+    if (cart.length === 0) {
+
+      cartItems.innerHTML =
+        `<p class="empty-cart">
+          ${t.emptyCart}
+        </p>`;
+
+    }
+
+
+    if (cartCount) {
+
+      cartCount.textContent =
+        totalQuantity;
+
+    }
+
+
+    document
+      .querySelectorAll(
+        ".quantity-plus"
+      )
+      .forEach((button) => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const index =
+              Number(
+                button.dataset.index
+              );
+
+
+            cart[index].quantity++;
+
+
+            saveCart();
+            updateCart();
+
+          }
+        );
+
+      });
+
+
+    document
+      .querySelectorAll(
+        ".quantity-minus"
+      )
+      .forEach((button) => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const index =
+              Number(
+                button.dataset.index
+              );
+
+
+            cart[index].quantity--;
+
+
+            if (
+              cart[index].quantity <= 0
+            ) {
+
+              cart.splice(
+                index,
+                1
+              );
+
+            }
+
+
+            saveCart();
+            updateCart();
+
+          }
+        );
+
+      });
+
+
+    document
+      .querySelectorAll(
+        ".remove-cart-item"
+      )
+      .forEach((button) => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const index =
+              Number(
+                button.dataset.index
+              );
+
+
+            cart.splice(
+              index,
+              1
+            );
+
+
+            saveCart();
+            updateCart();
+
+          }
+        );
+
+      });
+
+  }
+
+
+  document
+    .querySelectorAll(
+      ".add-cart"
+    )
+    .forEach((button) => {
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          const product = {
+
+            model:
+              button.dataset.model,
+
+            item:
+              button.dataset.item,
+
+            barcode:
+              button.dataset.barcode,
+
+            quantity: 1
+
+          };
+
+
+          const existing =
+            cart.find(
+              (item) =>
+                item.barcode ===
+                product.barcode
+            );
+
+
+          if (existing) {
+
+            existing.quantity++;
+
+          } else {
+
+            cart.push(
+              product
+            );
+
+          }
+
+
+          saveCart();
+          updateCart();
+
+
+          if (cartPanel) {
+
+            cartPanel.classList.add(
+              "open"
+            );
+
+          }
+
+        }
+      );
+
+    });
+
+
+  if (cartButton) {
+
+    cartButton.addEventListener(
+      "click",
+      () => {
+
+        cartPanel.classList.add(
+          "open"
+        );
+
+      }
+    );
+
+  }
+
+
+  if (closeCart) {
+
+    closeCart.addEventListener(
+      "click",
+      () => {
+
+        cartPanel.classList.remove(
+          "open"
+        );
+
+      }
+    );
+
+  }
+
+
+  if (clearCart) {
+
+    clearCart.addEventListener(
+      "click",
+      () => {
+
+        cart = [];
+
+        saveCart();
+        updateCart();
+
+      }
+    );
+
+  }
+
+
+  /* =========================
+     SEND ORDER BY EMAIL
+     ========================= */
+
+  if (sendOrder) {
+
+    sendOrder.addEventListener(
+      "click",
+      () => {
+
+        if (cart.length === 0) {
+
+          alert(
+            getLanguage() === "lt"
+              ? "Krepšelis tuščias."
+              : "Your cart is empty."
+          );
+
+          return;
+
+        }
+
+
+        /* CHANGE THIS */
+
+        const bossEmail =
+          "strungysmangirdas@gmail.com";
+
+
+        const language =
+          getLanguage();
+
+
+        let subject;
+        let body;
+
+
+        if (language === "lt") {
+
+          subject =
+            "Automobilių dalių užklausa";
+
+
+          body =
+            "Sveiki,\n\n" +
+            "Norėčiau užsakyti šias dalis:\n\n";
+
+        } else {
+
+          subject =
+            "Car parts order request";
+
+
+          body =
+            "Hello,\n\n" +
+            "I would like to order the following parts:\n\n";
+
+        }
+
+
+        cart.forEach(
+          (product, index) => {
+
+            body +=
+              `${index + 1}. ${product.item}\n` +
+
+              `${
+                language === "lt"
+                  ? "Modelis"
+                  : "Model"
+              }: ${product.model}\n` +
+
+              `${
+                language === "lt"
+                  ? "Detalės kodas"
+                  : "Part code"
+              }: ${product.barcode}\n` +
+
+              `${
+                language === "lt"
+                  ? "Kiekis"
+                  : "Quantity"
+              }: ${product.quantity}\n\n`;
+
+          }
+        );
+
+
+        if (language === "lt") {
+
+          body +=
+            "Prašau patvirtinti dalių prieinamumą ir kainą.\n\nAčiū.";
+
+        } else {
+
+          body +=
+            "Please confirm availability and price.\n\nThank you.";
+
+        }
+
+
+        const mailto =
+          `mailto:${bossEmail}` +
+          `?subject=${encodeURIComponent(subject)}` +
+          `&body=${encodeURIComponent(body)}`;
+
+
+        window.location.href =
+          mailto;
+
+      }
+    );
+
+  }
+
+
+  updateCart();
 
 });
