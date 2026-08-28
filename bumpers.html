@@ -1,27 +1,15 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<title>Bumpers | Car Parts Catalog</title>
-<link href="assets/style.css" rel="stylesheet"/>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
 
-<style>
-    .catalog-table th:nth-child(1),
-    .catalog-table td:nth-child(1) { width: 28%; }
+  <title>Bumpers | Car Parts Catalog</title>
 
-    .catalog-table th:nth-child(2),
-    .catalog-table td:nth-child(2) { width: 25%; }
+  <link href="assets/style.css" rel="stylesheet"/>
 
-    .catalog-table th:nth-child(3),
-    .catalog-table td:nth-child(3) { width: 17%; }
-
-    .catalog-table th:nth-child(4),
-    .catalog-table td:nth-child(4) { width: 17%; }
-
-    .catalog-table th:nth-child(5),
-    .catalog-table td:nth-child(5) { width: 13%; }
+  <style>
 
     .stock-status {
       display: inline-block;
@@ -48,22 +36,34 @@
     /* CART */
 
     .catalog-table th:nth-child(1),
-    .catalog-table td:nth-child(1) { width: 24%; }
+    .catalog-table td:nth-child(1) {
+      width: 24%;
+    }
 
     .catalog-table th:nth-child(2),
-    .catalog-table td:nth-child(2) { width: 22%; }
+    .catalog-table td:nth-child(2) {
+      width: 22%;
+    }
 
     .catalog-table th:nth-child(3),
-    .catalog-table td:nth-child(3) { width: 15%; }
+    .catalog-table td:nth-child(3) {
+      width: 15%;
+    }
 
     .catalog-table th:nth-child(4),
-    .catalog-table td:nth-child(4) { width: 15%; }
+    .catalog-table td:nth-child(4) {
+      width: 15%;
+    }
 
     .catalog-table th:nth-child(5),
-    .catalog-table td:nth-child(5) { width: 12%; }
+    .catalog-table td:nth-child(5) {
+      width: 12%;
+    }
 
     .catalog-table th:nth-child(6),
-    .catalog-table td:nth-child(6) { width: 12%; }
+    .catalog-table td:nth-child(6) {
+      width: 12%;
+    }
 
 
     .add-cart {
@@ -100,7 +100,7 @@
     .cart-panel {
       position: fixed;
       top: 0;
-      right: -460px;
+      right: -450px;
       width: min(420px, 100%);
       height: 100%;
       background: #171a21;
@@ -122,7 +122,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 15px;
       margin-bottom: 25px;
     }
 
@@ -213,7 +212,8 @@
       color: #aab2c0;
     }
 
-</style>
+  </style>
+
 </head>
 
 
@@ -222,46 +222,46 @@
 
 <header>
 
-<div class="container nav">
+  <div class="container nav">
 
-<a class="brand" href="index.html">
-<img
-  alt="SilentService logo"
-  class="brand-logo"
-  src="logo.png"
-/>
-</a>
-
-
-<div class="header-actions">
-
-<select
-  class="language-select"
-  id="languageSelect">
-
-<option value="lt">
-lietuvių
-</option>
-
-<option value="en">
-English
-</option>
-
-</select>
+    <a class="brand" href="index.html">
+      <img
+        alt="SilentService logo"
+        class="brand-logo"
+        src="logo.png"
+      />
+    </a>
 
 
-<a
-  class="button"
-  data-i18n="allCategories"
-  href="index.html">
+    <div class="header-actions">
 
-All categories
+      <select
+        class="language-select"
+        id="languageSelect"
+      >
 
-</a>
+        <option value="lt">
+          lietuvių
+        </option>
 
-</div>
+        <option value="en">
+          English
+        </option>
 
-</div>
+      </select>
+
+
+      <a
+        class="button"
+        data-i18n="allCategories"
+        href="index.html"
+      >
+        All categories
+      </a>
+
+    </div>
+
+  </div>
 
 </header>
 
@@ -270,997 +270,944 @@ All categories
 <main class="container">
 
 
-<div class="breadcrumb">
+  <div class="breadcrumb">
 
-<a
-  data-i18n="catalog"
-  href="index.html">
+    <a
+      data-i18n="catalog"
+      href="index.html"
+    >
+      Catalog
+    </a>
 
-Catalog
+    /
 
-</a>
+    <span data-i18n="bumpers">
+      Bumpers
+    </span>
 
-/
+  </div>
 
-<span data-i18n="bumpers">
-Bumpers
-</span>
 
-</div>
 
+  <section class="catalog-head">
 
+    <div
+      class="eyebrow"
+      data-i18n="availableParts"
+    >
+      Available parts
+    </div>
 
-<section class="catalog-head">
 
+    <h1 data-i18n="bumpers">
+      Bumpers
+    </h1>
 
-<div
-  class="eyebrow"
-  data-i18n="availableParts">
 
-Available parts
+    <p data-i18n="categoryDescription">
+      Front and rear bumpers. Click any photo to open a larger preview.
+    </p>
 
-</div>
+  </section>
 
 
-<h1 data-i18n="bumpers">
 
-Bumpers
+  <div class="table-tools">
 
-</h1>
+    <input
+      aria-label="Search catalog"
+      class="search"
+      data-i18n-placeholder="searchPlaceholder"
+      id="catalogSearch"
+      placeholder="Search model, item or part code..."
+      type="search"
+    />
 
+    <div
+      class="result-count"
+      id="resultCount"
+    ></div>
 
-<p data-i18n="categoryDescription">
+  </div>
 
-Front and rear bumpers. Click any photo to open a larger preview.
 
-</p>
 
+  <div class="table-wrap">
 
-</section>
+    <table class="catalog-table">
 
+      <thead>
 
+        <tr>
 
-<div class="table-tools">
+          <th data-i18n="model">
+            Model
+          </th>
 
+          <th data-i18n="item">
+            Item
+          </th>
 
-<input
-  aria-label="Search catalog"
-  class="search"
-  data-i18n-placeholder="searchPlaceholder"
-  id="catalogSearch"
-  placeholder="Search model, item or part code..."
-  type="search"
-/>
+          <th data-i18n="barcode">
+            Part code
+          </th>
 
+          <th data-i18n="stock">
+            Availability
+          </th>
 
-<div
-  class="result-count"
-  id="resultCount">
-</div>
+          <th data-i18n="photo">
+            Photo
+          </th>
 
+          <th data-i18n="cart">
+            Cart
+          </th>
 
-</div>
+        </tr>
 
+      </thead>
 
 
-<div class="table-wrap">
+      <tbody>
 
 
-<table class="catalog-table">
+        <tr>
 
+          <td>
+            Toyota Prius Plus Facelift 2015-
+          </td>
 
-<thead>
+          <td
+            class="item-name"
+            data-i18n="frontBumper"
+          >
+            Front Bumper
+          </td>
 
-<tr>
+          <td class="barcode">
+            52119-47969
+          </td>
 
-<th data-i18n="model">
-Model
-</th>
+          <td>
 
-<th data-i18n="item">
-Item
-</th>
+            <span
+              class="stock-status in-stock"
+              data-stock="in"
+            >
+              Available
+            </span>
 
-<th data-i18n="barcode">
-Part code
-</th>
+          </td>
 
-<th data-i18n="stock">
-Availability
-</th>
+          <td>
 
-<th data-i18n="photo">
-Photo
-</th>
+            <button
+              aria-label="Open photo of Front Bumper"
+              class="thumb-button"
+              type="button"
+            >
 
-<th data-i18n="cart">
-Cart
-</th>
+              <img
+                alt="Toyota Prius Plus Facelift 2015- — Front Bumper"
+                src="images/bumpers/part-1.jpg"
+              />
 
-</tr>
+            </button>
 
-</thead>
+          </td>
 
+          <td>
 
+            <button
+              class="add-cart"
+              data-barcode="52119-47969"
+              data-i18n="addToCart"
+              data-item="Front Bumper"
+              data-model="Toyota Prius Plus Facelift 2015-"
+              type="button"
+            >
+              Add
+            </button>
 
-<tbody>
+          </td>
 
+        </tr>
 
-<tr>
 
-<td>
-Toyota Prius Plus Facelift 2015-
-</td>
 
-<td
-  class="item-name"
-  data-i18n="frontBumper">
+        <tr>
 
-Front Bumper
+          <td>
+            Toyota Prius Plus Facelift 2015-
+          </td>
 
-</td>
+          <td
+            class="item-name"
+            data-i18n="rearBumper"
+          >
+            Rear Bumper
+          </td>
 
-<td class="barcode">
-52119-47969
-</td>
+          <td class="barcode">
+            52159-47070
+          </td>
 
-<td>
+          <td>
 
-<span
-  class="stock-status in-stock"
-  data-stock="in">
+            <span
+              class="stock-status in-stock"
+              data-stock="in"
+            >
+              Available
+            </span>
 
-Available
+          </td>
 
-</span>
+          <td>
 
-</td>
+            <button
+              aria-label="Open photo of Rear Bumper"
+              class="thumb-button"
+              type="button"
+            >
 
-<td>
+              <img
+                alt="Toyota Prius Plus Facelift 2015- — Rear Bumper"
+                src="images/bumpers/part-2.jpg"
+              />
 
-<button
-  aria-label="Open photo of Front Bumper"
-  class="thumb-button"
-  type="button">
+            </button>
 
-<img
-  alt="Toyota Prius Plus Facelift 2015- — Front Bumper"
-  src="images/bumpers/part-1.jpg"
-/>
+          </td>
 
-</button>
+          <td>
 
-</td>
+            <button
+              class="add-cart"
+              data-barcode="52159-47070"
+              data-i18n="addToCart"
+              data-item="Rear Bumper"
+              data-model="Toyota Prius Plus Facelift 2015-"
+              type="button"
+            >
+              Add
+            </button>
 
+          </td>
 
-<td>
+        </tr>
 
-<button
-  class="add-cart"
-  data-barcode="52119-47969"
-  data-i18n="addToCart"
-  data-item="Front Bumper"
-  data-model="Toyota Prius Plus Facelift 2015-"
-  type="button">
 
-Add
 
-</button>
+        <tr>
 
-</td>
+          <td>
+            Toyota Corolla Cross 2020–2024
+          </td>
 
-</tr>
+          <td
+            class="item-name"
+            data-i18n="reinforcementFrontBumper"
+          >
+            Reinforcement front bumper
+          </td>
 
+          <td class="barcode">
+            52131-16110
+          </td>
 
+          <td>
 
-<tr>
+            <span
+              class="stock-status in-stock"
+              data-stock="in"
+            >
+              Available
+            </span>
 
-<td>
-Toyota Prius Plus Facelift 2015-
-</td>
+          </td>
 
-<td
-  class="item-name"
-  data-i18n="rearBumper">
+          <td>
 
-Rear Bumper
+            <button
+              aria-label="Open photo of Reinforcement front bumper"
+              class="thumb-button"
+              type="button"
+            >
 
-</td>
+              <img
+                alt="Toyota Corolla Cross 2020–2024 — Reinforcement front bumper"
+                src="images/bumpers/part-3.jpg"
+              />
 
-<td class="barcode">
-52159-47070
-</td>
+            </button>
 
-<td>
+          </td>
 
-<span
-  class="stock-status in-stock"
-  data-stock="in">
+          <td>
 
-Available
+            <button
+              class="add-cart"
+              data-barcode="52131-16110"
+              data-i18n="addToCart"
+              data-item="Reinforcement front bumper"
+              data-model="Toyota Corolla Cross 2020–2024"
+              type="button"
+            >
+              Add
+            </button>
 
-</span>
+          </td>
 
-</td>
+        </tr>
 
-<td>
 
-<button
-  aria-label="Open photo of Rear Bumper"
-  class="thumb-button"
-  type="button">
 
-<img
-  alt="Toyota Prius Plus Facelift 2015- — Rear Bumper"
-  src="images/bumpers/part-2.jpg"
-/>
+        <tr>
 
-</button>
+          <td>
+            Toyota Corolla Cross 2020–2024
+          </td>
 
-</td>
+          <td
+            class="item-name"
+            data-i18n="reinforcementBracketRight"
+          >
+            Bracket for reinforcment right side
+          </td>
 
+          <td class="barcode">
+            57013-16010
+          </td>
 
-<td>
+          <td>
 
-<button
-  class="add-cart"
-  data-barcode="52159-47070"
-  data-i18n="addToCart"
-  data-item="Rear Bumper"
-  data-model="Toyota Prius Plus Facelift 2015-"
-  type="button">
+            <span
+              class="stock-status in-stock"
+              data-stock="in"
+            >
+              Available
+            </span>
 
-Add
+          </td>
 
-</button>
+          <td>
 
-</td>
+            <button
+              aria-label="Open photo"
+              class="thumb-button"
+              type="button"
+            >
 
-</tr>
+              <img
+                alt="Toyota Corolla Cross 2020-2024 — Bracket for reinforcement right side"
+                src="images/bumpers/part-4.jpg"
+              />
 
+            </button>
 
+          </td>
 
-<tr>
+          <td>
 
-<td>
-Toyota Corolla Cross 2020–2024
-</td>
+            <button
+              class="add-cart"
+              data-barcode="57013-16010"
+              data-i18n="addToCart"
+              data-item="Bracket for reinforcment right side"
+              data-model="Toyota Corolla Cross 2020–2024"
+              type="button"
+            >
+              Add
+            </button>
 
-<td
-  class="item-name"
-  data-i18n="reinforcementFrontBumper">
+          </td>
 
-Reinforcement front bumper
+        </tr>
 
-</td>
 
-<td class="barcode">
-52131-16110
-</td>
 
-<td>
+        <tr>
 
-<span
-  class="stock-status in-stock"
-  data-stock="in">
+          <td>
+            Toyota Corolla Cross 2020-2024
+          </td>
 
-Available
+          <td
+            class="item-name"
+            data-i18n="reinforcementBracketLeft"
+          >
+            Bracket for reinforcment left side
+          </td>
 
-</span>
+          <td class="barcode">
+            57014-16010
+          </td>
 
-</td>
+          <td>
 
-<td>
+            <span
+              class="stock-status in-stock"
+              data-stock="in"
+            >
+              Available
+            </span>
 
-<button
-  aria-label="Open photo of Reinforcement front bumper"
-  class="thumb-button"
-  type="button">
+          </td>
 
-<img
-  alt="Toyota Corolla Cross 2020–2024 — Reinforcement front bumper"
-  src="images/bumpers/part-3.jpg"
-/>
+          <td>
 
-</button>
+            <button
+              aria-label="Open photo"
+              class="thumb-button"
+              type="button"
+            >
 
-</td>
+              <img
+                alt="Toyota Corolla Cross 2020-2024 — Bracket for reinforcement left side"
+                src="images/bumpers/part-5.jpg"
+              />
 
+            </button>
 
-<td>
+          </td>
 
-<button
-  class="add-cart"
-  data-barcode="52131-16110"
-  data-i18n="addToCart"
-  data-item="Reinforcement front bumper"
-  data-model="Toyota Corolla Cross 2020–2024"
-  type="button">
+          <td>
 
-Add
+            <button
+              class="add-cart"
+              data-barcode="57014-16010"
+              data-i18n="addToCart"
+              data-item="Bracket for reinforcment left side"
+              data-model="Toyota Corolla Cross 2020-2024"
+              type="button"
+            >
+              Add
+            </button>
 
-</button>
+          </td>
 
-</td>
+        </tr>
 
-</tr>
 
 
+        <tr>
 
-<tr>
+          <td>
+            Toyota Corolla Cross 2020-2024
+          </td>
 
-<td>
-Toyota Corolla Cross 2020–2024
-</td>
+          <td
+            class="item-name"
+            data-i18n="lowerReinforcement"
+          >
+            Lower reinforcment
+          </td>
 
-<td
-  class="item-name"
-  data-i18n="reinforcementBracketRight">
+          <td class="barcode">
+            52132-12150
+          </td>
 
-Bracket for reinforcment right side
+          <td>
 
-</td>
+            <span
+              class="stock-status in-stock"
+              data-stock="in"
+            >
+              Available
+            </span>
 
-<td class="barcode">
-57013-16010
-</td>
+          </td>
 
-<td>
+          <td>
 
-<span
-  class="stock-status in-stock"
-  data-stock="in">
+            <button
+              aria-label="Open photo"
+              class="thumb-button"
+              type="button"
+            >
 
-Available
+              <img
+                alt="Toyota Corolla Cross 2020-2024 — Lower reinforcement"
+                src="images/bumpers/part-6.jpg"
+              />
 
-</span>
+            </button>
 
-</td>
+          </td>
 
-<td>
+          <td>
 
-<button
-  aria-label="Open photo"
-  class="thumb-button"
-  type="button">
+            <button
+              class="add-cart"
+              data-barcode="52132-12150"
+              data-i18n="addToCart"
+              data-item="Lower reinforcment"
+              data-model="Toyota Corolla Cross 2020-2024"
+              type="button"
+            >
+              Add
+            </button>
 
-<img
-  alt="Toyota Corolla Cross 2020-2024 — Bracket for reinforcement right side"
-  src="images/bumpers/part-4.jpg"
-/>
+          </td>
 
-</button>
+        </tr>
 
-</td>
 
 
-<td>
+        <tr>
 
-<button
-  class="add-cart"
-  data-barcode="57013-16010"
-  data-i18n="addToCart"
-  data-item="Bracket for reinforcment right side"
-  data-model="Toyota Corolla Cross 2020–2024"
-  type="button">
+          <td>
+            Toyota Corolla Cross 2020–2024
+          </td>
 
-Add
+          <td
+            class="item-name"
+            data-i18n="lowerReinforcementBracket"
+          >
+            Bracket for lower reinforcment left and right side
+          </td>
 
-</button>
+          <td class="barcode">
+            52133-12190
+          </td>
 
-</td>
+          <td>
 
-</tr>
+            <span
+              class="stock-status in-stock"
+              data-stock="in"
+            >
+              Available
+            </span>
 
+          </td>
 
+          <td>
 
-<tr>
+            <button
+              aria-label="Open photo"
+              class="thumb-button"
+              type="button"
+            >
 
-<td>
-Toyota Corolla Cross 2020-2024
-</td>
+              <img
+                alt="Toyota Corolla Cross 2020–2024 — Lower reinforcement bracket"
+                src="images/bumpers/part-7.jpg"
+              />
 
-<td
-  class="item-name"
-  data-i18n="reinforcementBracketLeft">
+            </button>
 
-Bracket for reinforcment left side
+          </td>
 
-</td>
+          <td>
 
-<td class="barcode">
-57014-16010
-</td>
+            <button
+              class="add-cart"
+              data-barcode="52133-12190"
+              data-i18n="addToCart"
+              data-item="Bracket for lower reinforcment left and right side"
+              data-model="Toyota Corolla Cross 2020–2024"
+              type="button"
+            >
+              Add
+            </button>
 
-<td>
+          </td>
 
-<span
-  class="stock-status in-stock"
-  data-stock="in">
+        </tr>
 
-Available
 
-</span>
 
-</td>
+        <tr>
 
-<td>
+          <td>
+            Toyota Corolla Cross 2020–2024
+          </td>
 
-<button
-  aria-label="Open photo"
-  class="thumb-button"
-  type="button">
+          <td
+            class="item-name"
+            data-i18n="lowerLipFrontBumper"
+          >
+            Lower lip front bumper
+          </td>
 
-<img
-  alt="Toyota Corolla Cross 2020-2024 — Bracket for reinforcement left side"
-  src="images/bumpers/part-5.jpg"
-/>
+          <td class="barcode">
+            52111-16902
+          </td>
 
-</button>
+          <td>
 
-</td>
+            <span
+              class="stock-status in-stock"
+              data-stock="in"
+            >
+              Available
+            </span>
 
+          </td>
 
-<td>
+          <td>
 
-<button
-  class="add-cart"
-  data-barcode="57014-16010"
-  data-i18n="addToCart"
-  data-item="Bracket for reinforcment left side"
-  data-model="Toyota Corolla Cross 2020-2024"
-  type="button">
+            <button
+              aria-label="Open photo"
+              class="thumb-button"
+              type="button"
+            >
 
-Add
+              <img
+                alt="Toyota Corolla Cross 2020-2024 — Lower lip front bumper"
+                src="images/bumpers/part-8.jpg"
+              />
 
-</button>
+            </button>
 
-</td>
+          </td>
 
-</tr>
+          <td>
 
+            <button
+              class="add-cart"
+              data-barcode="52111-16902"
+              data-i18n="addToCart"
+              data-item="Lower lip front bumper"
+              data-model="Toyota Corolla Cross 2020–2024"
+              type="button"
+            >
+              Add
+            </button>
 
+          </td>
 
-<tr>
+        </tr>
 
-<td>
-Toyota Corolla Cross 2020-2024
-</td>
 
-<td
-  class="item-name"
-  data-i18n="lowerReinforcement">
 
-Lower reinforcment
+        <tr>
 
-</td>
+          <td>
+            Toyota Corolla Cross 2020-2024
+          </td>
 
-<td class="barcode">
-52132-12150
-</td>
+          <td
+            class="item-name"
+            data-i18n="lowerPartFrontBumper"
+          >
+            Lower part front bumper
+          </td>
 
-<td>
+          <td class="barcode">
+            52129-16902
+          </td>
 
-<span
-  class="stock-status in-stock"
-  data-stock="in">
+          <td>
 
-Available
+            <span
+              class="stock-status in-stock"
+              data-stock="in"
+            >
+              Available
+            </span>
 
-</span>
+          </td>
 
-</td>
+          <td>
 
-<td>
+            <button
+              aria-label="Open photo"
+              class="thumb-button"
+              type="button"
+            >
 
-<button
-  aria-label="Open photo"
-  class="thumb-button"
-  type="button">
+              <img
+                alt="Toyota Corolla Cross 2020-2024 — Lower part front bumper"
+                src="images/bumpers/part-9.jpg"
+              />
 
-<img
-  alt="Toyota Corolla Cross 2020-2024 — Lower reinforcement"
-  src="images/bumpers/part-6.jpg"
-/>
+            </button>
 
-</button>
+          </td>
 
-</td>
+          <td>
 
+            <button
+              class="add-cart"
+              data-barcode="52129-16902"
+              data-i18n="addToCart"
+              data-item="Lower part front bumper"
+              data-model="Toyota Corolla Cross 2020-2024"
+              type="button"
+            >
+              Add
+            </button>
 
-<td>
+          </td>
 
-<button
-  class="add-cart"
-  data-barcode="52132-12150"
-  data-i18n="addToCart"
-  data-item="Lower reinforcment"
-  data-model="Toyota Corolla Cross 2020-2024"
-  type="button">
+        </tr>
 
-Add
 
-</button>
 
-</td>
+        <tr>
 
-</tr>
+          <td>
+            Toyota Corolla Cross 2020-2024
+          </td>
 
+          <td
+            class="item-name"
+            data-i18n="bumperSideRight"
+          >
+            Bumper side part right
+          </td>
 
+          <td class="barcode">
+            52112-16900
+          </td>
 
-<tr>
+          <td>
 
-<td>
-Toyota Corolla Cross 2020–2024
-</td>
+            <span
+              class="stock-status in-stock"
+              data-stock="in"
+            >
+              Available
+            </span>
 
-<td
-  class="item-name"
-  data-i18n="lowerReinforcementBracket">
+          </td>
 
-Bracket for lower reinforcment left and right side
+          <td>
 
-</td>
+            <button
+              aria-label="Open photo"
+              class="thumb-button"
+              type="button"
+            >
 
-<td class="barcode">
-52133-12190
-</td>
+              <img
+                alt="Toyota Corolla Cross 2020-2024 — Bumper side part right"
+                src="images/bumpers/part-10.jpg"
+              />
 
-<td>
+            </button>
 
-<span
-  class="stock-status in-stock"
-  data-stock="in">
+          </td>
 
-Available
+          <td>
 
-</span>
+            <button
+              class="add-cart"
+              data-barcode="52112-16900"
+              data-i18n="addToCart"
+              data-item="Bumper side part right"
+              data-model="Toyota Corolla Cross 2020-2024"
+              type="button"
+            >
+              Add
+            </button>
 
-</td>
+          </td>
 
-<td>
+        </tr>
 
-<button
-  aria-label="Open photo"
-  class="thumb-button"
-  type="button">
 
-<img
-  alt="Toyota Corolla Cross 2020–2024 — Lower reinforcement bracket"
-  src="images/bumpers/part-7.jpg"
-/>
 
-</button>
+        <tr>
 
-</td>
+          <td>
+            Toyota Corolla Cross 2020-2024
+          </td>
 
+          <td
+            class="item-name"
+            data-i18n="bumperSideLeft"
+          >
+            Bumper side part left
+          </td>
 
-<td>
+          <td class="barcode">
+            52113-16900
+          </td>
 
-<button
-  class="add-cart"
-  data-barcode="52133-12190"
-  data-i18n="addToCart"
-  data-item="Bracket for lower reinforcment left and right side"
-  data-model="Toyota Corolla Cross 2020–2024"
-  type="button">
+          <td>
 
-Add
+            <span
+              class="stock-status in-stock"
+              data-stock="in"
+            >
+              Available
+            </span>
 
-</button>
+          </td>
 
-</td>
+          <td>
 
-</tr>
+            <button
+              aria-label="Open photo"
+              class="thumb-button"
+              type="button"
+            >
 
+              <img
+                alt="Toyota Corolla Cross 2020-2024 — Bumper side part left"
+                src="images/bumpers/part-11.jpg"
+              />
 
+            </button>
 
-<tr>
+          </td>
 
-<td>
-Toyota Corolla Cross 2020–2024
-</td>
+          <td>
 
-<td
-  class="item-name"
-  data-i18n="lowerLipFrontBumper">
+            <button
+              class="add-cart"
+              data-barcode="52113-16900"
+              data-i18n="addToCart"
+              data-item="Bumper side part left"
+              data-model="Toyota Corolla Cross 2020-2024"
+              type="button"
+            >
+              Add
+            </button>
 
-Lower lip front bumper
+          </td>
 
-</td>
+        </tr>
 
-<td class="barcode">
-52111-16902
-</td>
 
-<td>
 
-<span
-  class="stock-status in-stock"
-  data-stock="in">
+        <tr>
 
-Available
+          <td>
+            Toyota Corolla Cross 2020-2024
+          </td>
 
-</span>
+          <td
+            class="item-name"
+            data-i18n="bumperHolderRight"
+          >
+            Bumper holder right side
+          </td>
 
-</td>
+          <td class="barcode">
+            52535-16050
+          </td>
 
-<td>
+          <td>
 
-<button
-  aria-label="Open photo"
-  class="thumb-button"
-  type="button">
+            <span
+              class="stock-status in-stock"
+              data-stock="in"
+            >
+              Available
+            </span>
 
-<img
-  alt="Toyota Corolla Cross 2020-2024 — Lower lip front bumper"
-  src="images/bumpers/part-8.jpg"
-/>
+          </td>
 
-</button>
+          <td>
 
-</td>
+            <button
+              aria-label="Open photo"
+              class="thumb-button"
+              type="button"
+            >
 
+              <img
+                alt="Toyota Corolla Cross 2020-2024 — Bumper holder right side"
+                src="images/bumpers/part-12.jpg"
+              />
 
-<td>
+            </button>
 
-<button
-  class="add-cart"
-  data-barcode="52111-16902"
-  data-i18n="addToCart"
-  data-item="Lower lip front bumper"
-  data-model="Toyota Corolla Cross 2020–2024"
-  type="button">
+          </td>
 
-Add
+          <td>
 
-</button>
+            <button
+              class="add-cart"
+              data-barcode="52535-16050"
+              data-i18n="addToCart"
+              data-item="Bumper holder right side"
+              data-model="Toyota Corolla Cross 2020-2024"
+              type="button"
+            >
+              Add
+            </button>
 
-</td>
+          </td>
 
-</tr>
+        </tr>
 
 
 
-<tr>
+        <tr>
 
-<td>
-Toyota Corolla Cross 2020-2024
-</td>
+          <td>
+            Toyota Corolla Cross 2020-2024
+          </td>
 
-<td
-  class="item-name"
-  data-i18n="lowerPartFrontBumper">
+          <td
+            class="item-name"
+            data-i18n="bumperHolderLeft"
+          >
+            Bumper holder left side
+          </td>
 
-Lower part front bumper
+          <td class="barcode">
+            52536-16040
+          </td>
 
-</td>
+          <td>
 
-<td class="barcode">
-52129-16902
-</td>
+            <span
+              class="stock-status in-stock"
+              data-stock="in"
+            >
+              Available
+            </span>
 
-<td>
+          </td>
 
-<span
-  class="stock-status in-stock"
-  data-stock="in">
+          <td>
 
-Available
+            <button
+              aria-label="Open photo"
+              class="thumb-button"
+              type="button"
+            >
 
-</span>
+              <img
+                alt="Toyota Corolla Cross 2020-2024 — Bumper holder left side"
+                src="images/bumpers/part-13.jpg"
+              />
 
-</td>
+            </button>
 
-<td>
+          </td>
 
-<button
-  aria-label="Open photo"
-  class="thumb-button"
-  type="button">
+          <td>
 
-<img
-  alt="Toyota Corolla Cross 2020-2024 — Lower part front bumper"
-  src="images/bumpers/part-9.jpg"
-/>
+            <button
+              class="add-cart"
+              data-barcode="52536-16040"
+              data-i18n="addToCart"
+              data-item="Bumper holder left side"
+              data-model="Toyota Corolla Cross 2020-2024"
+              type="button"
+            >
+              Add
+            </button>
 
-</button>
+          </td>
 
-</td>
+        </tr>
 
 
-<td>
+      </tbody>
 
-<button
-  class="add-cart"
-  data-barcode="52129-16902"
-  data-i18n="addToCart"
-  data-item="Lower part front bumper"
-  data-model="Toyota Corolla Cross 2020-2024"
-  type="button">
+    </table>
 
-Add
-
-</button>
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-Toyota Corolla Cross 2020-2024
-</td>
-
-<td
-  class="item-name"
-  data-i18n="bumperSideRight">
-
-Bumper side part right
-
-</td>
-
-<td class="barcode">
-52112-16900
-</td>
-
-<td>
-
-<span
-  class="stock-status in-stock"
-  data-stock="in">
-
-Available
-
-</span>
-
-</td>
-
-<td>
-
-<button
-  aria-label="Open photo"
-  class="thumb-button"
-  type="button">
-
-<img
-  alt="Toyota Corolla Cross 2020-2024 — Bumper side part right"
-  src="images/bumpers/part-10.jpg"
-/>
-
-</button>
-
-</td>
-
-
-<td>
-
-<button
-  class="add-cart"
-  data-barcode="52112-16900"
-  data-i18n="addToCart"
-  data-item="Bumper side part right"
-  data-model="Toyota Corolla Cross 2020-2024"
-  type="button">
-
-Add
-
-</button>
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-Toyota Corolla Cross 2020-2024
-</td>
-
-<td
-  class="item-name"
-  data-i18n="bumperSideLeft">
-
-Bumper side part left
-
-</td>
-
-<td class="barcode">
-52113-16900
-</td>
-
-<td>
-
-<span
-  class="stock-status in-stock"
-  data-stock="in">
-
-Available
-
-</span>
-
-</td>
-
-<td>
-
-<button
-  aria-label="Open photo"
-  class="thumb-button"
-  type="button">
-
-<img
-  alt="Toyota Corolla Cross 2020-2024 — Bumper side part left"
-  src="images/bumpers/part-11.jpg"
-/>
-
-</button>
-
-</td>
-
-
-<td>
-
-<button
-  class="add-cart"
-  data-barcode="52113-16900"
-  data-i18n="addToCart"
-  data-item="Bumper side part left"
-  data-model="Toyota Corolla Cross 2020-2024"
-  type="button">
-
-Add
-
-</button>
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-Toyota Corolla Cross 2020-2024
-</td>
-
-<td
-  class="item-name"
-  data-i18n="bumperHolderRight">
-
-Bumper holder right side
-
-</td>
-
-<td class="barcode">
-52535-16050
-</td>
-
-<td>
-
-<span
-  class="stock-status in-stock"
-  data-stock="in">
-
-Available
-
-</span>
-
-</td>
-
-<td>
-
-<button
-  aria-label="Open photo"
-  class="thumb-button"
-  type="button">
-
-<img
-  alt="Toyota Corolla Cross 2020-2024 — Bumper holder right side"
-  src="images/bumpers/part-12.jpg"
-/>
-
-</button>
-
-</td>
-
-
-<td>
-
-<button
-  class="add-cart"
-  data-barcode="52535-16050"
-  data-i18n="addToCart"
-  data-item="Bumper holder right side"
-  data-model="Toyota Corolla Cross 2020-2024"
-  type="button">
-
-Add
-
-</button>
-
-</td>
-
-</tr>
-
-
-
-<tr>
-
-<td>
-Toyota Corolla Cross 2020-2024
-</td>
-
-<td
-  class="item-name"
-  data-i18n="bumperHolderLeft">
-
-Bumper holder left side
-
-</td>
-
-<td class="barcode">
-52536-16040
-</td>
-
-<td>
-
-<span
-  class="stock-status in-stock"
-  data-stock="in">
-
-Available
-
-</span>
-
-</td>
-
-<td>
-
-<button
-  aria-label="Open photo"
-  class="thumb-button"
-  type="button">
-
-<img
-  alt="Toyota Corolla Cross 2020-2024 — Bumper holder left side"
-  src="images/bumpers/part-13.jpg"
-/>
-
-</button>
-
-</td>
-
-
-<td>
-
-<button
-  class="add-cart"
-  data-barcode="52536-16040"
-  data-i18n="addToCart"
-  data-item="Bumper holder left side"
-  data-model="Toyota Corolla Cross 2020-2024"
-  type="button">
-
-Add
-
-</button>
-
-</td>
-
-</tr>
-
-
-</tbody>
-
-</table>
-
-</div>
+  </div>
 
 </main>
 
@@ -1269,29 +1216,29 @@ Add
 <div
   aria-hidden="true"
   class="image-modal"
-  id="imageModal">
+  id="imageModal"
+>
 
-<div class="modal-panel">
+  <div class="modal-panel">
 
-<button
-  aria-label="Close image"
-  class="modal-close"
-  id="modalClose"
-  type="button">
+    <button
+      aria-label="Close image"
+      class="modal-close"
+      id="modalClose"
+      type="button"
+    >
+      ×
+    </button>
 
-×
 
-</button>
+    <img
+      alt=""
+      class="modal-image"
+      id="modalImage"
+      src=""
+    />
 
-
-<img
-  alt=""
-  class="modal-image"
-  id="modalImage"
-  src=""
-/>
-
-</div>
+  </div>
 
 </div>
 
@@ -1301,15 +1248,16 @@ Add
   aria-label="Open cart"
   class="cart-button"
   id="cartButton"
-  role="button">
+  role="button"
+>
 
-🛒
+  🛒
 
-<span data-i18n="cart">
-Cart
-</span>
+  <span data-i18n="cart">
+    Cart
+  </span>
 
-(<span id="cartCount">0</span>)
+  (<span id="cartCount">0</span>)
 
 </div>
 
@@ -1317,62 +1265,49 @@ Cart
 
 <div
   class="cart-panel"
-  id="cartPanel">
+  id="cartPanel"
+>
+
+  <div class="cart-header">
+
+    <h2 data-i18n="yourOrder">
+      Your order
+    </h2>
+
+    <button
+      aria-label="Close cart"
+      id="closeCart"
+      type="button"
+    >
+      ×
+    </button>
+
+  </div>
 
 
-<div class="cart-header">
+  <div id="cartItems"></div>
 
 
-<h2 data-i18n="yourOrder">
+  <div class="cart-actions">
 
-Your order
-
-</h2>
-
-
-<button
-  aria-label="Close cart"
-  id="closeCart"
-  type="button">
-
-×
-
-</button>
+    <button
+      data-i18n="clearCart"
+      id="clearCart"
+      type="button"
+    >
+      Clear cart
+    </button>
 
 
-</div>
+    <button
+      data-i18n="sendOrder"
+      id="sendOrder"
+      type="button"
+    >
+      Send order
+    </button>
 
-
-
-<div id="cartItems">
-</div>
-
-
-
-<div class="cart-actions">
-
-
-<button
-  data-i18n="clearCart"
-  id="clearCart"
-  type="button">
-
-Clear cart
-
-</button>
-
-
-<button
-  data-i18n="sendOrder"
-  id="sendOrder"
-  type="button">
-
-Send order
-
-</button>
-
-
-</div>
+  </div>
 
 </div>
 
@@ -1380,17 +1315,16 @@ Send order
 
 <footer class="footer">
 
-<div class="container">
-
-Car Parts Catalog • Bumpers
-
-</div>
+  <div class="container">
+    Car Parts Catalog • Bumpers
+  </div>
 
 </footer>
 
 
 
-<script src="assets/catalog.js?v=4"></script>
+<!-- IMPORTANT: NEW SHARED CART/WIX JAVASCRIPT -->
+<script src="assets/catalog.js?v=6"></script>
 
 
 
@@ -1398,15 +1332,11 @@ Car Parts Catalog • Bumpers
 
 const catalogTranslations = {
 
-
   lt: {
 
     allCategories: "Visos kategorijos",
-
     catalog: "Katalogas",
-
     bumpers: "Bamperiai",
-
     availableParts: "TURIMOS DALYS",
 
     categoryDescription:
@@ -1416,31 +1346,20 @@ const catalogTranslations = {
       "Ieškoti modelio, detalės arba detalės kodo...",
 
     model: "MODELIS",
-
     item: "DETALĖ",
-
     barcode: "DETALĖS KODAS",
-
     stock: "LIKUTIS",
-
     photo: "NUOTRAUKA",
 
     inStock: "Yra sandėlyje",
-
     outStock: "Nėra sandėlyje",
 
     cart: "KREPŠELIS",
-
     addToCart: "Pridėti į krepšelį",
-
     yourOrder: "Jūsų užklausa",
-
     sendOrder: "Siųsti užklausą",
-
     clearCart: "Išvalyti",
-
     remove: "Pašalinti",
-
     emptyCart: "Krepšelis tuščias"
 
   },
@@ -1449,11 +1368,8 @@ const catalogTranslations = {
   en: {
 
     allCategories: "All categories",
-
     catalog: "Catalog",
-
     bumpers: "Bumpers",
-
     availableParts: "AVAILABLE PARTS",
 
     categoryDescription:
@@ -1463,31 +1379,20 @@ const catalogTranslations = {
       "Search model, item or part code...",
 
     model: "MODEL",
-
     item: "ITEM",
-
     barcode: "PART CODE",
-
     stock: "AVAILABILITY",
-
     photo: "PHOTO",
 
     inStock: "Available",
-
     outStock: "Out of stock",
 
     cart: "CART",
-
     addToCart: "Add to cart",
-
     yourOrder: "Your order",
-
     sendOrder: "Send order",
-
     clearCart: "Clear cart",
-
     remove: "Remove",
-
     emptyCart: "Cart is empty"
 
   }
@@ -1495,110 +1400,82 @@ const catalogTranslations = {
 };
 
 
-
 const languageSelect =
-  document.getElementById(
-    "languageSelect"
-  );
+  document.getElementById("languageSelect");
 
 
-
-function setCatalogLanguage(
-  language
-) {
+function setCatalogLanguage(language) {
 
   document.documentElement.lang =
     language;
 
 
-
   document
-    .querySelectorAll(
-      "[data-i18n]"
-    )
-    .forEach(
-      element => {
+    .querySelectorAll("[data-i18n]")
+    .forEach(element => {
 
-        const key =
-          element.getAttribute(
-            "data-i18n"
-          );
+      const key =
+        element.getAttribute("data-i18n");
 
+      if (
+        catalogTranslations[language] &&
+        catalogTranslations[language][key]
+      ) {
 
-        if (
-          catalogTranslations[language] &&
-          catalogTranslations[language][key]
-        ) {
-
-          element.textContent =
-            catalogTranslations[language][key];
-
-        }
+        element.textContent =
+          catalogTranslations[language][key];
 
       }
-    );
 
+    });
 
 
   document
-    .querySelectorAll(
-      "[data-i18n-placeholder]"
-    )
-    .forEach(
-      element => {
+    .querySelectorAll("[data-i18n-placeholder]")
+    .forEach(element => {
 
-        const key =
-          element.getAttribute(
-            "data-i18n-placeholder"
-          );
+      const key =
+        element.getAttribute(
+          "data-i18n-placeholder"
+        );
 
+      if (
+        catalogTranslations[language] &&
+        catalogTranslations[language][key]
+      ) {
 
-        if (
-          catalogTranslations[language] &&
-          catalogTranslations[language][key]
-        ) {
-
-          element.placeholder =
-            catalogTranslations[language][key];
-
-        }
+        element.placeholder =
+          catalogTranslations[language][key];
 
       }
-    );
 
+    });
 
 
   document
-    .querySelectorAll(
-      "[data-stock]"
-    )
-    .forEach(
-      element => {
+    .querySelectorAll("[data-stock]")
+    .forEach(element => {
 
-        if (
-          element.dataset.stock ===
-          "in"
-        ) {
+      if (
+        element.dataset.stock === "in"
+      ) {
 
-          element.textContent =
-            catalogTranslations[language].inStock;
-
-        }
-
-
-        if (
-          element.dataset.stock ===
-          "out"
-        ) {
-
-          element.textContent =
-            catalogTranslations[language].outStock;
-
-        }
+        element.textContent =
+          catalogTranslations[language].inStock;
 
       }
-    );
 
+
+      if (
+        element.dataset.stock === "out"
+      ) {
+
+        element.textContent =
+          catalogTranslations[language].outStock;
+
+      }
+
+    });
 
 
   localStorage.setItem(
@@ -1609,23 +1486,19 @@ function setCatalogLanguage(
 }
 
 
-
 const savedLanguage =
   localStorage.getItem(
     "catalogLanguage"
   ) || "lt";
 
 
-
 languageSelect.value =
   savedLanguage;
-
 
 
 setCatalogLanguage(
   savedLanguage
 );
-
 
 
 languageSelect.addEventListener(
@@ -1643,5 +1516,4 @@ languageSelect.addEventListener(
 
 
 </body>
-
 </html>
