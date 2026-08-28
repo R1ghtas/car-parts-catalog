@@ -930,19 +930,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================
-     SEND ORDER BY EMAIL
+     SEND ORDER TO WIX
      ========================= */
 
   if (sendOrder) {
 
     sendOrder.addEventListener(
       "click",
-      () => {
+      async () => {
+
+        const language =
+          getLanguage();
+
 
         if (cart.length === 0) {
 
           alert(
-            getLanguage() === "lt"
+            language === "lt"
               ? "Krepšelis tuščias."
               : "Your cart is empty."
           );
@@ -952,92 +956,195 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* CHANGE THIS */
-
-        const bossEmail =
-          "strungysmangirdas@gmail.com";
-
-
-        const language =
-          getLanguage();
+        const customerName =
+          prompt(
+            language === "lt"
+              ? "Įveskite vardą / įmonės pavadinimą:"
+              : "Enter your name / company name:"
+          );
 
 
-        let subject;
-        let body;
-
-
-        if (language === "lt") {
-
-          subject =
-            "Automobilių dalių užklausa";
-
-
-          body =
-            "Sveiki,\n\n" +
-            "Norėčiau užsakyti šias dalis:\n\n";
-
-        } else {
-
-          subject =
-            "Car parts order request";
-
-
-          body =
-            "Hello,\n\n" +
-            "I would like to order the following parts:\n\n";
-
+        if (
+          !customerName ||
+          !customerName.trim()
+        ) {
+          return;
         }
 
 
-        cart.forEach(
-          (product, index) => {
+        const customerEmail =
+          prompt(
+            language === "lt"
+              ? "Įveskite el. pašto adresą:"
+              : "Enter your email address:"
+          );
 
-            body +=
-              `${index + 1}. ${product.item}\n` +
 
-              `${
-                language === "lt"
-                  ? "Modelis"
-                  : "Model"
-              }: ${product.model}\n` +
+        if (
+          !customerEmail ||
+          !customerEmail.trim()
+        ) {
+          return;
+        }
 
-              `${
-                language === "lt"
-                  ? "Detalės kodas"
-                  : "Part code"
-              }: ${product.barcode}\n` +
 
-              `${
-                language === "lt"
-                  ? "Kiekis"
-                  : "Quantity"
-              }: ${product.quantity}\n\n`;
+        const customerPhone =
+          prompt(
+            language === "lt"
+              ? "Įveskite telefono numerį (nebūtina):"
+              : "Enter your phone number (optional):"
+          ) || "";
+
+
+        const customerComment =
+          prompt(
+            language === "lt"
+              ? "Komentaras (nebūtina):"
+              : "Comment (optional):"
+          ) || "";
+
+
+        const orderData = {
+
+          customerName:
+            customerName.trim(),
+
+          email:
+            customerEmail.trim(),
+
+          phone:
+            customerPhone.trim(),
+
+          comment:
+            customerComment.trim(),
+
+          items:
+            cart.map(
+              (product) => ({
+
+                name:
+                  product.item,
+
+                model:
+                  product.model,
+
+                code:
+                  product.barcode,
+
+                quantity:
+                  product.quantity
+
+              })
+            )
+
+        };
+
+
+        const originalButtonText =
+          sendOrder.textContent;
+
+
+        sendOrder.disabled =
+          true;
+
+
+        sendOrder.textContent =
+          language === "lt"
+            ? "Siunčiama..."
+            : "Sending...";
+
+
+        try {
+
+          const response =
+            await fetch(
+              "https://www.silentservice.lt/_functions/order?rc=test-site",
+              {
+                method: "POST",
+
+                headers: {
+                  "Content-Type": "application/json"
+                },
+
+                body:
+                  JSON.stringify(
+                    orderData
+                  )
+              }
+            );
+
+
+          const result =
+            await response.json();
+
+
+          if (
+            response.ok &&
+            result.success
+          ) {
+
+            alert(
+              language === "lt"
+                ? `Užklausa sėkmingai išsiųsta.\nUžsakymo numeris: ${result.orderNumber}`
+                : `Order sent successfully.\nOrder number: ${result.orderNumber}`
+            );
+
+
+            cart = [];
+
+            saveCart();
+
+            updateCart();
+
+
+            if (cartPanel) {
+
+              cartPanel.classList.remove(
+                "open"
+              );
+
+            }
+
+          } else {
+
+            console.error(
+              "Wix order error:",
+              result
+            );
+
+
+            alert(
+              language === "lt"
+                ? "Nepavyko išsiųsti užklausos. Bandykite dar kartą."
+                : "Could not send the order. Please try again."
+            );
 
           }
-        );
+
+        } catch (error) {
+
+          console.error(
+            "Order request failed:",
+            error
+          );
 
 
-        if (language === "lt") {
+          alert(
+            language === "lt"
+              ? "Nepavyko susisiekti su užsakymų sistema."
+              : "Could not connect to the ordering system."
+          );
 
-          body +=
-            "Prašau patvirtinti dalių prieinamumą ir kainą.\n\nAčiū.";
+        } finally {
 
-        } else {
+          sendOrder.disabled =
+            false;
 
-          body +=
-            "Please confirm availability and price.\n\nThank you.";
+
+          sendOrder.textContent =
+            originalButtonText;
 
         }
-
-
-        const mailto =
-          `mailto:${bossEmail}` +
-          `?subject=${encodeURIComponent(subject)}` +
-          `&body=${encodeURIComponent(body)}`;
-
-
-        window.location.href =
-          mailto;
 
       }
     );
