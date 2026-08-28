@@ -2,10 +2,14 @@
 
 <html lang="en">
 <head>
+
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
+
 <title>Headlights | Car Parts Catalog</title>
+
 <link href="assets/style.css" rel="stylesheet"/>
+
 <style>
 
     .stock-status {
@@ -28,442 +32,1255 @@
       color: #a33b3b;
       border: 1px solid #efd2d2;
     }
-  
+
 
     .catalog-table th:nth-child(1),
-    .catalog-table td:nth-child(1) { width: 24%; }
+    .catalog-table td:nth-child(1) {
+      width: 24%;
+    }
 
     .catalog-table th:nth-child(2),
-    .catalog-table td:nth-child(2) { width: 22%; }
+    .catalog-table td:nth-child(2) {
+      width: 22%;
+    }
 
     .catalog-table th:nth-child(3),
-    .catalog-table td:nth-child(3) { width: 15%; }
+    .catalog-table td:nth-child(3) {
+      width: 15%;
+    }
 
     .catalog-table th:nth-child(4),
-    .catalog-table td:nth-child(4) { width: 15%; }
+    .catalog-table td:nth-child(4) {
+      width: 15%;
+    }
 
     .catalog-table th:nth-child(5),
-    .catalog-table td:nth-child(5) { width: 12%; }
+    .catalog-table td:nth-child(5) {
+      width: 12%;
+    }
 
     .catalog-table th:nth-child(6),
-    .catalog-table td:nth-child(6) { width: 12%; }
-
-    .add-cart{
-      padding:9px 14px;
-      border:0;
-      border-radius:8px;
-      background:#fff;
-      color:#111;
-      font-weight:700;
-      cursor:pointer;
-      white-space:nowrap;
+    .catalog-table td:nth-child(6) {
+      width: 12%;
     }
 
-    .add-cart:hover{opacity:.85}
 
-    .cart-button{
-      position:fixed;
-      right:25px;
-      bottom:25px;
-      z-index:900;
-      padding:14px 20px;
-      background:#fff;
-      color:#111;
-      border-radius:999px;
-      font-weight:800;
-      cursor:pointer;
-      box-shadow:0 8px 30px rgba(0,0,0,.35);
+    .add-cart {
+      padding: 9px 14px;
+      border: 0;
+      border-radius: 8px;
+      background: #fff;
+      color: #111;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
     }
 
-    .cart-panel{
-      position:fixed;
-      top:0;
-      right:-450px;
-      width:min(420px,100%);
-      height:100%;
-      background:#171a21;
-      color:#f5f7fb;
-      z-index:9998;
-      padding:25px;
-      overflow-y:auto;
-      transition:right .3s ease;
-      border-left:1px solid #2b313c;
-      box-shadow:-10px 0 35px rgba(0,0,0,.35);
+    .add-cart:hover {
+      opacity: .85;
     }
 
-    .cart-panel.open{right:0}
 
-    .cart-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:25px;
+    .cart-button {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      z-index: 900;
+      padding: 14px 20px;
+      background: #fff;
+      color: #111;
+      border-radius: 999px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 8px 30px rgba(0,0,0,.35);
     }
 
-    .cart-header h2{margin:0}
 
-    #closeCart{
-      background:none;
-      border:0;
-      color:#fff;
-      font-size:32px;
-      cursor:pointer;
+    .cart-panel {
+      position: fixed;
+      top: 0;
+      right: -450px;
+      width: min(420px,100%);
+      height: 100%;
+      background: #171a21;
+      color: #f5f7fb;
+      z-index: 9998;
+      padding: 25px;
+      overflow-y: auto;
+      transition: right .3s ease;
+      border-left: 1px solid #2b313c;
+      box-shadow: -10px 0 35px rgba(0,0,0,.35);
     }
 
-    .cart-item{
-      padding:15px 0;
-      border-bottom:1px solid #2b313c;
+    .cart-panel.open {
+      right: 0;
     }
 
-    .cart-item-info{
-      display:flex;
-      flex-direction:column;
-      gap:4px;
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
     }
 
-    .cart-item-info span{
-      color:#aab2c0;
-      font-size:.9rem;
+    .cart-header h2 {
+      margin: 0;
     }
 
-    .cart-quantity{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin-top:12px;
+
+    #closeCart {
+      background: none;
+      border: 0;
+      color: #fff;
+      font-size: 32px;
+      cursor: pointer;
     }
 
-    .cart-quantity button{
-      width:32px;
-      height:32px;
-      border:0;
-      border-radius:6px;
-      cursor:pointer;
+
+    .cart-item {
+      padding: 15px 0;
+      border-bottom: 1px solid #2b313c;
     }
 
-    .remove-cart-item{
-      margin-top:10px;
-      padding:0;
-      background:none;
-      border:0;
-      color:#aab2c0;
-      cursor:pointer;
+
+    .cart-item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
-    .cart-actions{
-      display:flex;
-      gap:10px;
-      margin-top:25px;
+
+    .cart-item-info span {
+      color: #aab2c0;
+      font-size: .9rem;
     }
 
-    .cart-actions button{
-      flex:1;
-      padding:12px;
-      border:0;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:700;
+
+    .cart-quantity {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
     }
 
-    #sendOrder{
-      background:#fff;
-      color:#111;
+
+    .cart-quantity button {
+      width: 32px;
+      height: 32px;
+      border: 0;
+      border-radius: 6px;
+      cursor: pointer;
     }
 
-    .empty-cart{color:#aab2c0}
+
+    .remove-cart-item {
+      margin-top: 10px;
+      padding: 0;
+      background: none;
+      border: 0;
+      color: #aab2c0;
+      cursor: pointer;
+    }
+
+
+    .cart-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+
+    .cart-actions button {
+      flex: 1;
+      padding: 12px;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+
+    #sendOrder {
+      background: #fff;
+      color: #111;
+    }
+
+
+    .empty-cart {
+      color: #aab2c0;
+    }
+
 </style>
+
 </head>
+
+
 <body>
+
+
 <header>
+
 <div class="container nav">
+
 <a class="brand" href="index.html">
-<img alt="SilentService logo" class="brand-logo" src="logo.png"/>
+
+<img
+  alt="SilentService logo"
+  class="brand-logo"
+  src="logo.png"
+/>
+
 </a>
+
+
 <div class="header-actions">
-<select class="language-select" id="languageSelect">
-<option value="lt">lietuvių</option>
-<option value="en">English</option>
+
+<select
+  class="language-select"
+  id="languageSelect"
+>
+
+<option value="lt">
+lietuvių
+</option>
+
+<option value="en">
+English
+</option>
+
 </select>
-<a class="button" data-i18n="allCategories" href="index.html">
-        All categories
-      </a>
-</div>
-</div>
-</header>
-<main class="container">
-<div class="breadcrumb">
-<a data-i18n="catalog" href="index.html">Catalog</a> /
-    <span data-i18n="headlights">Headlights</span>
-</div>
-<section class="catalog-head">
-<div class="eyebrow" data-i18n="availableParts">
-      Available parts
-    </div>
-<h1 data-i18n="headlights">
-      Headlights
-    </h1>
-<p data-i18n="categoryDescription">
-      Headlights, taillights and daylights. Click any photo to open a larger preview.
-    </p>
-</section>
-<div class="table-tools">
-<input aria-label="Search catalog" class="search" data-i18n-placeholder="searchPlaceholder" id="catalogSearch" placeholder="Search model, item or barcode..." type="search"/>
-<div class="result-count" id="resultCount"></div>
-</div>
-<div class="table-wrap">
-<table class="catalog-table">
-<thead>
-<tr>
-<th data-i18n="model">Model</th>
-<th data-i18n="item">Item</th>
-<th data-i18n="barcode">Barcode</th>
-<th data-i18n="stock">Availability</th>
-<th data-i18n="photo">Photo</th>
-<th data-i18n="cart">Cart</th></tr>
-</thead>
-<tbody>
-<tr>
-<td>Toyota Prius Plus Facelift 2015-</td>
-<td class="item-name" data-i18n="headlightRightSide">
-            Headlight Right Side
-          </td>
-<td class="barcode">81140-47680</td>
-<td>
-<span class="stock-status in-stock" data-stock="in">
-              Available
-            </span>
-</td>
-<td>
-<button aria-label="Open photo of Headlight Right Side" class="thumb-button" type="button">
-<img alt="Toyota Prius Plus Facelift 2015- — Headlight Right Side" src="images/headlights/part-1.jpg"/>
-</button>
-</td>
-<td><button class="add-cart" data-barcode="81140-47680" data-i18n="addToCart" data-item="Headlight Right Side" data-model="Toyota Prius Plus Facelift 2015-" type="button">Add</button></td></tr>
-<tr>
-<td>Toyota Prius Plus Facelift 2015-</td>
-<td class="item-name" data-i18n="headlightLeftSide">
-            Headlight Left Side
-          </td>
-<td class="barcode">81070-47680</td>
-<td>
-<span class="stock-status in-stock" data-stock="in">
-              Available
-            </span>
-</td>
-<td>
-<button aria-label="Open photo of Headlight Left Side" class="thumb-button" type="button">
-<img alt="Toyota Prius Plus Facelift 2015- — Headlight Left Side" src="images/headlights/part-2.jpg"/>
-</button>
-</td>
-<td><button class="add-cart" data-barcode="81070-47680" data-i18n="addToCart" data-item="Headlight Left Side" data-model="Toyota Prius Plus Facelift 2015-" type="button">Add</button></td></tr>
-<tr>
-<td>Toyota Prius Plus Facelift 2015-</td>
-<td class="item-name" data-i18n="daylightRight">
-            Daylight Right
-          </td>
-<td class="barcode">81430-47050</td>
-<td>
-<span class="stock-status in-stock" data-stock="in">
-              Available
-            </span>
-</td>
-<td>
-<button aria-label="Open photo of Daylight Right" class="thumb-button" type="button">
-<img alt="Toyota Prius Plus Facelift 2015- — Daylight Right" src="images/headlights/part-3.jpg"/>
-</button>
-</td>
-<td><button class="add-cart" data-barcode="81430-47050" data-i18n="addToCart" data-item="Daylight Right" data-model="Toyota Prius Plus Facelift 2015-" type="button">Add</button></td></tr>
-<tr>
-<td>Toyota Prius Plus Facelift 2015-</td>
-<td class="item-name" data-i18n="daylightLeft">
-            Daylight Left
-          </td>
-<td class="barcode">81440-47050</td>
-<td>
-<span class="stock-status in-stock" data-stock="in">
-              Available
-            </span>
-</td>
-<td>
-<button aria-label="Open photo of Daylight Left" class="thumb-button" type="button">
-<img alt="Toyota Prius Plus Facelift 2015- — Daylight Left" src="images/headlights/part-4.jpg"/>
-</button>
-</td>
-<td><button class="add-cart" data-barcode="81440-47050" data-i18n="addToCart" data-item="Daylight Left" data-model="Toyota Prius Plus Facelift 2015-" type="button">Add</button></td></tr>
-<tr>
-<td>Toyota Prius Plus Facelift 2015-</td>
-<td class="item-name" data-i18n="taillightLeft">
-            Taillight Left
-          </td>
-<td class="barcode">81561-47262</td>
-<td>
-<span class="stock-status in-stock" data-stock="in">
-              Available
-            </span>
-</td>
-<td>
-<button aria-label="Open photo of Taillight Left" class="thumb-button" type="button">
-<img alt="Toyota Prius Plus Facelift 2015- — Taillight Left" src="images/headlights/part-5.jpg"/>
-</button>
-</td>
-<td><button class="add-cart" data-barcode="81561-47262" data-i18n="addToCart" data-item="Taillight Left" data-model="Toyota Prius Plus Facelift 2015-" type="button">Add</button></td></tr>
-<tr>
-<td>Toyota Prius Plus Facelift 2015-</td>
-<td class="item-name" data-i18n="taillightRight">
-            Taillight Right
-          </td>
-<td class="barcode">81551-47252</td>
-<td>
-<span class="stock-status in-stock" data-stock="in">
-              Available
-            </span>
-</td>
-<td>
-<button aria-label="Open photo of Taillight Right" class="thumb-button" type="button">
-<img alt="Toyota Prius Plus Facelift 2015- — Taillight Right" src="images/headlights/part-6.jpg"/>
-</button>
-</td>
-<td><button class="add-cart" data-barcode="81551-47252" data-i18n="addToCart" data-item="Taillight Right" data-model="Toyota Prius Plus Facelift 2015-" type="button">Add</button></td></tr>
-<tr>
-<td>Toyota Prius Plus 2012-2015</td>
-<td class="item-name" data-i18n="headlightLeft">
-            Headlight Left
-          </td>
-<td class="barcode">81130-47420</td>
-<td>
-<span class="stock-status in-stock" data-stock="in">
-              Available
-            </span>
-</td>
-<td>
-<button aria-label="Open photo of Headlight Left" class="thumb-button" type="button">
-<img alt="Toyota Prius Plus 2012-2015 — Headlight Left" src="images/headlights/part-7.jpg"/>
-</button>
-</td>
-<td><button class="add-cart" data-barcode="81130-47420" data-i18n="addToCart" data-item="Headlight Left" data-model="Toyota Prius Plus 2012-2015" type="button">Add</button></td></tr>
-<tr>
-<td>Toyota Prius Plus 2012-2015</td>
-<td class="item-name" data-i18n="headlightRight">
-            Headlight Right
-          </td>
-<td class="barcode">81170-47420</td>
-<td>
-<span class="stock-status in-stock" data-stock="in">
-              Available
-            </span>
-</td>
-<td>
-<button aria-label="Open photo of Headlight Right" class="thumb-button" type="button">
-<img alt="Toyota Prius Plus 2012-2015 — Headlight Right" src="images/headlights/part-8.jpg"/>
-</button>
-</td>
-<td><button class="add-cart" data-barcode="81170-47420" data-i18n="addToCart" data-item="Headlight Right" data-model="Toyota Prius Plus 2012-2015" type="button">Add</button></td></tr>
-<tr>
-<td>Toyota Corolla Cross 2020-2024 (LED EU)</td>
-<td class="item-name" data-i18n="headlightRight">
-            Headlight Right
-          </td>
-<td class="barcode">81110-16840</td>
-<td>
-<span class="stock-status in-stock" data-stock="in">
-              Available
-            </span>
-</td>
-<td>
-<button aria-label="Open photo of Headlight Right" class="thumb-button" type="button">
-<img alt="Toyota Corolla Cross 2020-2024 (LED EU) — Headlight Right" src="images/headlights/part-9.jpg"/>
-</button>
-</td>
-<td><button class="add-cart" data-barcode="81110-16840" data-i18n="addToCart" data-item="Headlight Right" data-model="Toyota Corolla Cross 2020-2024 (LED EU)" type="button">Add</button></td></tr>
-<tr>
-<td>Toyota Corolla Cross 2020-2024 (LED EU)</td>
-<td class="item-name" data-i18n="headlightLeft">
-            Headlight Left
-          </td>
-<td class="barcode">81150-16840</td>
-<td>
-<span class="stock-status in-stock" data-stock="in">
-              Available
-            </span>
-</td>
-<td>
-<button aria-label="Open photo of Headlight Left" class="thumb-button" type="button">
-<img alt="Toyota Corolla Cross 2020-2024 (LED EU) — Headlight Left" src="images/headlights/part-10.jpg"/>
-</button>
-</td>
-<td><button class="add-cart" data-barcode="81150-16840" data-i18n="addToCart" data-item="Headlight Left" data-model="Toyota Corolla Cross 2020-2024 (LED EU)" type="button">Add</button></td></tr>
-<tr>
-<td>Toyota Prius Plus 2012-2015</td>
-<td class="item-name" data-i18n="daylightRight">
-            Daylight Right
-          </td>
-<td class="barcode">81511-47070</td>
-<td>
-<span class="stock-status in-stock" data-stock="in">
-              Available
-            </span>
-</td>
-<td>
-<button aria-label="Open photo of Daylight Right" class="thumb-button" type="button">
-<img alt="Toyota Prius Plus 2012-2015 — Daylight Right" src="images/headlights/part-11.jpg"/>
-</button>
-</td>
-<td><button class="add-cart" data-barcode="81511-47070" data-i18n="addToCart" data-item="Daylight Right" data-model="Toyota Prius Plus 2012-2015" type="button">Add</button></td></tr>
-<tr>
-<td>Toyota Prius Plus 2012-2015</td>
-<td class="item-name" data-i18n="daylightLeft">
-            Daylight Left
-          </td>
-<td class="barcode">81150-16840</td>
-<td>
-<span class="stock-status in-stock" data-stock="in">
-              Available
-            </span>
-</td>
-<td>
-<button aria-label="Open photo of Daylight Left" class="thumb-button" type="button">
-<img alt="Toyota Prius Plus 2012-2015 — Daylight Left" src="images/headlights/part-12.jpg"/>
-</button>
-</td>
-<td><button class="add-cart" data-barcode="81150-16840" data-i18n="addToCart" data-item="Daylight Left" data-model="Toyota Prius Plus 2012-2015" type="button">Add</button></td></tr>
-</tbody>
-</table>
-</div>
-</main>
-<div aria-hidden="true" class="image-modal" id="imageModal">
-<div class="modal-panel">
-<button aria-label="Close image" class="modal-close" id="modalClose" type="button">
-      ×
-    </button>
-<img alt="" class="modal-image" id="modalImage" src=""/>
-</div>
+
+
+<a
+  class="button"
+  data-i18n="allCategories"
+  href="index.html"
+>
+
+All categories
+
+</a>
+
 </div>
 
-<div class="cart-button" id="cartButton">
-  🛒 <span data-i18n="cart">Cart</span> (<span id="cartCount">0</span>)
 </div>
-<div class="cart-panel" id="cartPanel">
+
+</header>
+
+
+
+<main class="container">
+
+
+<div class="breadcrumb">
+
+<a
+  data-i18n="catalog"
+  href="index.html"
+>
+Catalog
+</a>
+
+/
+
+<span data-i18n="headlights">
+Headlights
+</span>
+
+</div>
+
+
+
+<section class="catalog-head">
+
+<div
+  class="eyebrow"
+  data-i18n="availableParts"
+>
+Available parts
+</div>
+
+
+<h1 data-i18n="headlights">
+Headlights
+</h1>
+
+
+<p data-i18n="categoryDescription">
+Headlights, taillights and daylights. Click any photo to open a larger preview.
+</p>
+
+</section>
+
+
+
+<div class="table-tools">
+
+<input
+  aria-label="Search catalog"
+  class="search"
+  data-i18n-placeholder="searchPlaceholder"
+  id="catalogSearch"
+  placeholder="Search model, item or part code..."
+  type="search"
+/>
+
+<div
+  class="result-count"
+  id="resultCount">
+</div>
+
+</div>
+
+
+
+<div class="table-wrap">
+
+<table class="catalog-table">
+
+
+<thead>
+
+<tr>
+
+<th data-i18n="model">
+Model
+</th>
+
+<th data-i18n="item">
+Item
+</th>
+
+<th data-i18n="barcode">
+Part code
+</th>
+
+<th data-i18n="stock">
+Availability
+</th>
+
+<th data-i18n="photo">
+Photo
+</th>
+
+<th data-i18n="cart">
+Cart
+</th>
+
+</tr>
+
+</thead>
+
+
+
+<tbody>
+
+
+<tr>
+
+<td>
+Toyota Prius Plus Facelift 2015-
+</td>
+
+<td
+  class="item-name"
+  data-i18n="headlightRightSide"
+>
+Headlight Right Side
+</td>
+
+<td class="barcode">
+81140-47680
+</td>
+
+<td>
+
+<span
+  class="stock-status in-stock"
+  data-stock="in"
+>
+Available
+</span>
+
+</td>
+
+<td>
+
+<button
+  aria-label="Open photo of Headlight Right Side"
+  class="thumb-button"
+  type="button"
+>
+
+<img
+  alt="Toyota Prius Plus Facelift 2015- — Headlight Right Side"
+  src="images/headlights/part-1.jpg"
+/>
+
+</button>
+
+</td>
+
+<td>
+
+<button
+  class="add-cart"
+  data-barcode="81140-47680"
+  data-i18n="addToCart"
+  data-item="Headlight Right Side"
+  data-model="Toyota Prius Plus Facelift 2015-"
+  type="button"
+>
+Add
+</button>
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+Toyota Prius Plus Facelift 2015-
+</td>
+
+<td
+  class="item-name"
+  data-i18n="headlightLeftSide"
+>
+Headlight Left Side
+</td>
+
+<td class="barcode">
+81070-47680
+</td>
+
+<td>
+
+<span
+  class="stock-status in-stock"
+  data-stock="in"
+>
+Available
+</span>
+
+</td>
+
+<td>
+
+<button
+  aria-label="Open photo of Headlight Left Side"
+  class="thumb-button"
+  type="button"
+>
+
+<img
+  alt="Toyota Prius Plus Facelift 2015- — Headlight Left Side"
+  src="images/headlights/part-2.jpg"
+/>
+
+</button>
+
+</td>
+
+<td>
+
+<button
+  class="add-cart"
+  data-barcode="81070-47680"
+  data-i18n="addToCart"
+  data-item="Headlight Left Side"
+  data-model="Toyota Prius Plus Facelift 2015-"
+  type="button"
+>
+Add
+</button>
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+Toyota Prius Plus Facelift 2015-
+</td>
+
+<td
+  class="item-name"
+  data-i18n="daylightRight"
+>
+Daylight Right
+</td>
+
+<td class="barcode">
+81430-47050
+</td>
+
+<td>
+
+<span
+  class="stock-status in-stock"
+  data-stock="in"
+>
+Available
+</span>
+
+</td>
+
+<td>
+
+<button
+  aria-label="Open photo of Daylight Right"
+  class="thumb-button"
+  type="button"
+>
+
+<img
+  alt="Toyota Prius Plus Facelift 2015- — Daylight Right"
+  src="images/headlights/part-3.jpg"
+/>
+
+</button>
+
+</td>
+
+<td>
+
+<button
+  class="add-cart"
+  data-barcode="81430-47050"
+  data-i18n="addToCart"
+  data-item="Daylight Right"
+  data-model="Toyota Prius Plus Facelift 2015-"
+  type="button"
+>
+Add
+</button>
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+Toyota Prius Plus Facelift 2015-
+</td>
+
+<td
+  class="item-name"
+  data-i18n="daylightLeft"
+>
+Daylight Left
+</td>
+
+<td class="barcode">
+81440-47050
+</td>
+
+<td>
+
+<span
+  class="stock-status in-stock"
+  data-stock="in"
+>
+Available
+</span>
+
+</td>
+
+<td>
+
+<button
+  aria-label="Open photo of Daylight Left"
+  class="thumb-button"
+  type="button"
+>
+
+<img
+  alt="Toyota Prius Plus Facelift 2015- — Daylight Left"
+  src="images/headlights/part-4.jpg"
+/>
+
+</button>
+
+</td>
+
+<td>
+
+<button
+  class="add-cart"
+  data-barcode="81440-47050"
+  data-i18n="addToCart"
+  data-item="Daylight Left"
+  data-model="Toyota Prius Plus Facelift 2015-"
+  type="button"
+>
+Add
+</button>
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+Toyota Prius Plus Facelift 2015-
+</td>
+
+<td
+  class="item-name"
+  data-i18n="taillightLeft"
+>
+Taillight Left
+</td>
+
+<td class="barcode">
+81561-47262
+</td>
+
+<td>
+
+<span
+  class="stock-status in-stock"
+  data-stock="in"
+>
+Available
+</span>
+
+</td>
+
+<td>
+
+<button
+  aria-label="Open photo of Taillight Left"
+  class="thumb-button"
+  type="button"
+>
+
+<img
+  alt="Toyota Prius Plus Facelift 2015- — Taillight Left"
+  src="images/headlights/part-5.jpg"
+/>
+
+</button>
+
+</td>
+
+<td>
+
+<button
+  class="add-cart"
+  data-barcode="81561-47262"
+  data-i18n="addToCart"
+  data-item="Taillight Left"
+  data-model="Toyota Prius Plus Facelift 2015-"
+  type="button"
+>
+Add
+</button>
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+Toyota Prius Plus Facelift 2015-
+</td>
+
+<td
+  class="item-name"
+  data-i18n="taillightRight"
+>
+Taillight Right
+</td>
+
+<td class="barcode">
+81551-47252
+</td>
+
+<td>
+
+<span
+  class="stock-status in-stock"
+  data-stock="in"
+>
+Available
+</span>
+
+</td>
+
+<td>
+
+<button
+  aria-label="Open photo of Taillight Right"
+  class="thumb-button"
+  type="button"
+>
+
+<img
+  alt="Toyota Prius Plus Facelift 2015- — Taillight Right"
+  src="images/headlights/part-6.jpg"
+/>
+
+</button>
+
+</td>
+
+<td>
+
+<button
+  class="add-cart"
+  data-barcode="81551-47252"
+  data-i18n="addToCart"
+  data-item="Taillight Right"
+  data-model="Toyota Prius Plus Facelift 2015-"
+  type="button"
+>
+Add
+</button>
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+Toyota Prius Plus 2012-2015
+</td>
+
+<td
+  class="item-name"
+  data-i18n="headlightLeft"
+>
+Headlight Left
+</td>
+
+<td class="barcode">
+81130-47420
+</td>
+
+<td>
+
+<span
+  class="stock-status in-stock"
+  data-stock="in"
+>
+Available
+</span>
+
+</td>
+
+<td>
+
+<button
+  aria-label="Open photo of Headlight Left"
+  class="thumb-button"
+  type="button"
+>
+
+<img
+  alt="Toyota Prius Plus 2012-2015 — Headlight Left"
+  src="images/headlights/part-7.jpg"
+/>
+
+</button>
+
+</td>
+
+<td>
+
+<button
+  class="add-cart"
+  data-barcode="81130-47420"
+  data-i18n="addToCart"
+  data-item="Headlight Left"
+  data-model="Toyota Prius Plus 2012-2015"
+  type="button"
+>
+Add
+</button>
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+Toyota Prius Plus 2012-2015
+</td>
+
+<td
+  class="item-name"
+  data-i18n="headlightRight"
+>
+Headlight Right
+</td>
+
+<td class="barcode">
+81170-47420
+</td>
+
+<td>
+
+<span
+  class="stock-status in-stock"
+  data-stock="in"
+>
+Available
+</span>
+
+</td>
+
+<td>
+
+<button
+  aria-label="Open photo of Headlight Right"
+  class="thumb-button"
+  type="button"
+>
+
+<img
+  alt="Toyota Prius Plus 2012-2015 — Headlight Right"
+  src="images/headlights/part-8.jpg"
+/>
+
+</button>
+
+</td>
+
+<td>
+
+<button
+  class="add-cart"
+  data-barcode="81170-47420"
+  data-i18n="addToCart"
+  data-item="Headlight Right"
+  data-model="Toyota Prius Plus 2012-2015"
+  type="button"
+>
+Add
+</button>
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+Toyota Corolla Cross 2020-2024 (LED EU)
+</td>
+
+<td
+  class="item-name"
+  data-i18n="headlightRight"
+>
+Headlight Right
+</td>
+
+<td class="barcode">
+81110-16840
+</td>
+
+<td>
+
+<span
+  class="stock-status in-stock"
+  data-stock="in"
+>
+Available
+</span>
+
+</td>
+
+<td>
+
+<button
+  aria-label="Open photo of Headlight Right"
+  class="thumb-button"
+  type="button"
+>
+
+<img
+  alt="Toyota Corolla Cross 2020-2024 (LED EU) — Headlight Right"
+  src="images/headlights/part-9.jpg"
+/>
+
+</button>
+
+</td>
+
+<td>
+
+<button
+  class="add-cart"
+  data-barcode="81110-16840"
+  data-i18n="addToCart"
+  data-item="Headlight Right"
+  data-model="Toyota Corolla Cross 2020-2024 (LED EU)"
+  type="button"
+>
+Add
+</button>
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+Toyota Corolla Cross 2020-2024 (LED EU)
+</td>
+
+<td
+  class="item-name"
+  data-i18n="headlightLeft"
+>
+Headlight Left
+</td>
+
+<td class="barcode">
+81150-16840
+</td>
+
+<td>
+
+<span
+  class="stock-status in-stock"
+  data-stock="in"
+>
+Available
+</span>
+
+</td>
+
+<td>
+
+<button
+  aria-label="Open photo of Headlight Left"
+  class="thumb-button"
+  type="button"
+>
+
+<img
+  alt="Toyota Corolla Cross 2020-2024 (LED EU) — Headlight Left"
+  src="images/headlights/part-10.jpg"
+/>
+
+</button>
+
+</td>
+
+<td>
+
+<button
+  class="add-cart"
+  data-barcode="81150-16840"
+  data-i18n="addToCart"
+  data-item="Headlight Left"
+  data-model="Toyota Corolla Cross 2020-2024 (LED EU)"
+  type="button"
+>
+Add
+</button>
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+Toyota Prius Plus 2012-2015
+</td>
+
+<td
+  class="item-name"
+  data-i18n="daylightRight"
+>
+Daylight Right
+</td>
+
+<td class="barcode">
+81511-47070
+</td>
+
+<td>
+
+<span
+  class="stock-status in-stock"
+  data-stock="in"
+>
+Available
+</span>
+
+</td>
+
+<td>
+
+<button
+  aria-label="Open photo of Daylight Right"
+  class="thumb-button"
+  type="button"
+>
+
+<img
+  alt="Toyota Prius Plus 2012-2015 — Daylight Right"
+  src="images/headlights/part-11.jpg"
+/>
+
+</button>
+
+</td>
+
+<td>
+
+<button
+  class="add-cart"
+  data-barcode="81511-47070"
+  data-i18n="addToCart"
+  data-item="Daylight Right"
+  data-model="Toyota Prius Plus 2012-2015"
+  type="button"
+>
+Add
+</button>
+
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>
+Toyota Prius Plus 2012-2015
+</td>
+
+<td
+  class="item-name"
+  data-i18n="daylightLeft"
+>
+Daylight Left
+</td>
+
+<td class="barcode">
+81150-16840
+</td>
+
+<td>
+
+<span
+  class="stock-status in-stock"
+  data-stock="in"
+>
+Available
+</span>
+
+</td>
+
+<td>
+
+<button
+  aria-label="Open photo of Daylight Left"
+  class="thumb-button"
+  type="button"
+>
+
+<img
+  alt="Toyota Prius Plus 2012-2015 — Daylight Left"
+  src="images/headlights/part-12.jpg"
+/>
+
+</button>
+
+</td>
+
+<td>
+
+<button
+  class="add-cart"
+  data-barcode="81150-16840"
+  data-i18n="addToCart"
+  data-item="Daylight Left"
+  data-model="Toyota Prius Plus 2012-2015"
+  type="button"
+>
+Add
+</button>
+
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+</div>
+
+</main>
+
+
+
+<div
+  aria-hidden="true"
+  class="image-modal"
+  id="imageModal"
+>
+
+<div class="modal-panel">
+
+<button
+  aria-label="Close image"
+  class="modal-close"
+  id="modalClose"
+  type="button"
+>
+×
+</button>
+
+<img
+  alt=""
+  class="modal-image"
+  id="modalImage"
+  src=""
+/>
+
+</div>
+
+</div>
+
+
+
+<div
+  aria-label="Open cart"
+  class="cart-button"
+  id="cartButton"
+  role="button"
+>
+
+🛒
+
+<span data-i18n="cart">
+Cart
+</span>
+
+(<span id="cartCount">0</span>)
+
+</div>
+
+
+
+<div
+  class="cart-panel"
+  id="cartPanel"
+>
+
 <div class="cart-header">
-<h2 data-i18n="yourOrder">Your order</h2>
-<button aria-label="Close cart" id="closeCart" type="button">×</button>
+
+<h2 data-i18n="yourOrder">
+Your order
+</h2>
+
+<button
+  aria-label="Close cart"
+  id="closeCart"
+  type="button"
+>
+×
+</button>
+
 </div>
-<div id="cartItems"></div>
+
+
+<div id="cartItems">
+</div>
+
+
 <div class="cart-actions">
-<button data-i18n="clearCart" id="clearCart" type="button">Clear cart</button>
-<button data-i18n="sendOrder" id="sendOrder" type="button">Send order</button>
+
+<button
+  data-i18n="clearCart"
+  id="clearCart"
+  type="button"
+>
+Clear cart
+</button>
+
+
+<button
+  data-i18n="sendOrder"
+  id="sendOrder"
+  type="button"
+>
+Send order
+</button>
+
 </div>
+
 </div>
+
+
+
 <footer class="footer">
-<div class="container">Car Parts Catalog • Headlights</div>
+
+<div class="container">
+Car Parts Catalog • Headlights
+</div>
+
 </footer>
-<script src="assets/catalog.js"></script>
+
+
+
+<!-- SHARED CART + WIX ORDER JAVASCRIPT -->
+<script src="assets/catalog.js?v=7"></script>
+
+
+
 <script>
+
 const catalogTranslations = {
 
   lt: {
+
     allCategories: "Visos kategorijos",
+
     catalog: "Katalogas",
+
     headlights: "Žibintai",
+
     availableParts: "TURIMOS DALYS",
 
     categoryDescription:
@@ -473,39 +1290,69 @@ const catalogTranslations = {
       "Ieškoti modelio, detalės arba detalės kodo...",
 
     model: "MODELIS",
+
     item: "DETALĖ",
+
     barcode: "DETALĖS KODAS",
+
     stock: "LIKUTIS",
+
     photo: "NUOTRAUKA",
 
     inStock: "Yra sandėlyje",
+
     outStock: "Nėra sandėlyje",
+
     cart: "KREPŠELIS",
-    addToCart: "Pridėti į",
+
+    addToCart: "Pridėti į krepšelį",
+
     yourOrder: "Jūsų užklausa",
+
     sendOrder: "Siųsti užklausą",
+
     clearCart: "Išvalyti",
+
     remove: "Pašalinti",
+
     emptyCart: "Krepšelis tuščias",
 
-    headlightRightSide: "Priekinis žibintas dešinėje pusėje",
-    headlightLeftSide: "Priekinis žibintas kairėje pusėje",
 
-    headlightRight: "Priekinis žibintas dešinėje",
-    headlightLeft: "Priekinis žibintas kairėje",
+    headlightRightSide:
+      "Priekinis žibintas dešinėje pusėje",
 
-    daylightRight: "Dienos žibintas dešinėje",
-    daylightLeft: "Dienos žibintas kairėje",
+    headlightLeftSide:
+      "Priekinis žibintas kairėje pusėje",
 
-    taillightRight: "Galinis žibintas dešinėje",
-    taillightLeft: "Galinis žibintas kairėje"
+    headlightRight:
+      "Priekinis žibintas dešinėje",
+
+    headlightLeft:
+      "Priekinis žibintas kairėje",
+
+    daylightRight:
+      "Dienos žibintas dešinėje",
+
+    daylightLeft:
+      "Dienos žibintas kairėje",
+
+    taillightRight:
+      "Galinis žibintas dešinėje",
+
+    taillightLeft:
+      "Galinis žibintas kairėje"
+
   },
 
 
   en: {
+
     allCategories: "All categories",
+
     catalog: "Catalog",
+
     headlights: "Headlights",
+
     availableParts: "AVAILABLE PARTS",
 
     categoryDescription:
@@ -515,96 +1362,160 @@ const catalogTranslations = {
       "Search model, item or part code...",
 
     model: "MODEL",
+
     item: "ITEM",
+
     barcode: "PART CODE",
+
     stock: "AVAILABILITY",
+
     photo: "PHOTO",
 
     inStock: "Available",
+
     outStock: "Out of stock",
+
     cart: "CART",
+
     addToCart: "Add to cart",
+
     yourOrder: "Your order",
+
     sendOrder: "Send order",
+
     clearCart: "Clear cart",
+
     remove: "Remove",
+
     emptyCart: "Cart is empty",
 
-    headlightRightSide: "Headlight Right Side",
-    headlightLeftSide: "Headlight Left Side",
 
-    headlightRight: "Headlight Right",
-    headlightLeft: "Headlight Left",
+    headlightRightSide:
+      "Headlight Right Side",
 
-    daylightRight: "Daylight Right",
-    daylightLeft: "Daylight Left",
+    headlightLeftSide:
+      "Headlight Left Side",
 
-    taillightRight: "Taillight Right",
-    taillightLeft: "Taillight Left"
+    headlightRight:
+      "Headlight Right",
+
+    headlightLeft:
+      "Headlight Left",
+
+    daylightRight:
+      "Daylight Right",
+
+    daylightLeft:
+      "Daylight Left",
+
+    taillightRight:
+      "Taillight Right",
+
+    taillightLeft:
+      "Taillight Left"
+
   }
 
 };
 
 
+
 const languageSelect =
-  document.getElementById("languageSelect");
+  document.getElementById(
+    "languageSelect"
+  );
 
 
-function setCatalogLanguage(language) {
+function setCatalogLanguage(
+  language
+) {
 
-  document.documentElement.lang = language;
-
-
-  document.querySelectorAll("[data-i18n]").forEach(element => {
-
-    const key = element.getAttribute("data-i18n");
-
-    if (
-      catalogTranslations[language] &&
-      catalogTranslations[language][key]
-    ) {
-
-      element.textContent =
-        catalogTranslations[language][key];
-
-    }
-
-  });
+  document.documentElement.lang =
+    language;
 
 
   document
-    .querySelectorAll("[data-i18n-placeholder]")
-    .forEach(element => {
+    .querySelectorAll(
+      "[data-i18n]"
+    )
+    .forEach(
+      element => {
 
-      const key =
-        element.getAttribute("data-i18n-placeholder");
+        const key =
+          element.getAttribute(
+            "data-i18n"
+          );
 
-      if (
-        catalogTranslations[language] &&
-        catalogTranslations[language][key]
-      ) {
 
-        element.placeholder =
-          catalogTranslations[language][key];
+        if (
+          catalogTranslations[language] &&
+          catalogTranslations[language][key]
+        ) {
+
+          element.textContent =
+            catalogTranslations[language][key];
+
+        }
 
       }
+    );
 
-    });
+
+  document
+    .querySelectorAll(
+      "[data-i18n-placeholder]"
+    )
+    .forEach(
+      element => {
+
+        const key =
+          element.getAttribute(
+            "data-i18n-placeholder"
+          );
 
 
-  document.querySelectorAll("[data-stock]").forEach(element => {
+        if (
+          catalogTranslations[language] &&
+          catalogTranslations[language][key]
+        ) {
 
-    if (element.dataset.stock === "in") {
-      element.textContent =
-        catalogTranslations[language].inStock;
-    }
+          element.placeholder =
+            catalogTranslations[language][key];
 
-    if (element.dataset.stock === "out") {
-      element.textContent =
-        catalogTranslations[language].outStock;
-    }
+        }
 
-  });
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      "[data-stock]"
+    )
+    .forEach(
+      element => {
+
+        if (
+          element.dataset.stock === "in"
+        ) {
+
+          element.textContent =
+            catalogTranslations[language].inStock;
+
+        }
+
+
+        if (
+          element.dataset.stock === "out"
+        ) {
+
+          element.textContent =
+            catalogTranslations[language].outStock;
+
+        }
+
+      }
+    );
 
 
   localStorage.setItem(
@@ -615,8 +1526,11 @@ function setCatalogLanguage(language) {
 }
 
 
+
 const savedLanguage =
-  localStorage.getItem("catalogLanguage") || "lt";
+  localStorage.getItem(
+    "catalogLanguage"
+  ) || "lt";
 
 
 languageSelect.value =
@@ -640,206 +1554,8 @@ languageSelect.addEventListener(
 );
 
 </script>
-<script id="cartScript">
-document.addEventListener("DOMContentLoaded", () => {
 
-  let cart = JSON.parse(localStorage.getItem("partsCart") || "[]");
 
-  const cartButton = document.getElementById("cartButton");
-  const cartPanel = document.getElementById("cartPanel");
-  const cartItems = document.getElementById("cartItems");
-  const cartCount = document.getElementById("cartCount");
-  const closeCart = document.getElementById("closeCart");
-  const clearCart = document.getElementById("clearCart");
-  const sendOrder = document.getElementById("sendOrder");
+</body>
 
-  const getLanguage = () =>
-    localStorage.getItem("catalogLanguage") || "lt";
-
-  function saveCart() {
-    localStorage.setItem("partsCart", JSON.stringify(cart));
-  }
-
-  function updateCart() {
-    if (!cartItems) return;
-
-    const language = getLanguage();
-    const removeText = language === "lt" ? "Pašalinti" : "Remove";
-    const emptyText = language === "lt" ? "Krepšelis tuščias" : "Cart is empty";
-
-    cartItems.innerHTML = "";
-    let totalQuantity = 0;
-
-    cart.forEach((product, index) => {
-      totalQuantity += product.quantity;
-
-      const item = document.createElement("div");
-      item.className = "cart-item";
-
-      item.innerHTML = `
-        <div class="cart-item-info">
-          <strong>${product.item}</strong>
-          <span>${product.model}</span>
-          <span>${product.barcode}</span>
-        </div>
-
-        <div class="cart-quantity">
-          <button type="button" class="quantity-minus" data-index="${index}">−</button>
-          <span>${product.quantity}</span>
-          <button type="button" class="quantity-plus" data-index="${index}">+</button>
-        </div>
-
-        <button type="button" class="remove-cart-item" data-index="${index}">
-          ${removeText}
-        </button>
-      `;
-
-      cartItems.appendChild(item);
-    });
-
-    if (cart.length === 0) {
-      cartItems.innerHTML = `<p class="empty-cart">${emptyText}</p>`;
-    }
-
-    if (cartCount) cartCount.textContent = totalQuantity;
-
-    document.querySelectorAll(".quantity-plus").forEach(button => {
-      button.addEventListener("click", () => {
-        const index = Number(button.dataset.index);
-        cart[index].quantity++;
-        saveCart();
-        updateCart();
-      });
-    });
-
-    document.querySelectorAll(".quantity-minus").forEach(button => {
-      button.addEventListener("click", () => {
-        const index = Number(button.dataset.index);
-        cart[index].quantity--;
-
-        if (cart[index].quantity <= 0) {
-          cart.splice(index, 1);
-        }
-
-        saveCart();
-        updateCart();
-      });
-    });
-
-    document.querySelectorAll(".remove-cart-item").forEach(button => {
-      button.addEventListener("click", () => {
-        const index = Number(button.dataset.index);
-        cart.splice(index, 1);
-        saveCart();
-        updateCart();
-      });
-    });
-  }
-
-  document.querySelectorAll(".add-cart").forEach(button => {
-    button.addEventListener("click", () => {
-      const product = {
-        model: button.dataset.model,
-        item: button.dataset.item,
-        barcode: button.dataset.barcode,
-        quantity: 1
-      };
-
-      const existing = cart.find(item =>
-        item.barcode === product.barcode &&
-        item.model === product.model &&
-        item.item === product.item
-      );
-
-      if (existing) {
-        existing.quantity++;
-      } else {
-        cart.push(product);
-      }
-
-      saveCart();
-      updateCart();
-
-      if (cartPanel) cartPanel.classList.add("open");
-    });
-  });
-
-  if (cartButton) {
-    cartButton.addEventListener("click", () => {
-      cartPanel.classList.add("open");
-    });
-  }
-
-  if (closeCart) {
-    closeCart.addEventListener("click", () => {
-      cartPanel.classList.remove("open");
-    });
-  }
-
-  if (clearCart) {
-    clearCart.addEventListener("click", () => {
-      cart = [];
-      saveCart();
-      updateCart();
-    });
-  }
-
-  if (sendOrder) {
-    sendOrder.addEventListener("click", () => {
-
-      if (cart.length === 0) {
-        alert(getLanguage() === "lt"
-          ? "Krepšelis tuščias."
-          : "Your cart is empty.");
-        return;
-      }
-
-      /* CHANGE THIS TO YOUR BOSS'S REAL EMAIL */
-      const bossEmail = "strungysmangirdas@gmail.com";
-
-      const language = getLanguage();
-      let subject;
-      let body;
-
-      if (language === "lt") {
-        subject = "Automobilių dalių užklausa";
-        body = "Sveiki,\n\nNorėčiau užsakyti šias dalis:\n\n";
-      } else {
-        subject = "Car parts order request";
-        body = "Hello,\n\nI would like to order the following parts:\n\n";
-      }
-
-      cart.forEach((product, index) => {
-        body +=
-          `${index + 1}. ${product.item}\n` +
-          `${language === "lt" ? "Modelis" : "Model"}: ${product.model}\n` +
-          `${language === "lt" ? "Detalės kodas" : "Part code"}: ${product.barcode}\n` +
-          `${language === "lt" ? "Kiekis" : "Quantity"}: ${product.quantity}\n\n`;
-      });
-
-      if (language === "lt") {
-        body += "Prašau patvirtinti dalių prieinamumą ir kainą.\n\nAčiū.";
-      } else {
-        body += "Please confirm availability and price.\n\nThank you.";
-      }
-
-      const mailto =
-        `mailto:${bossEmail}` +
-        `?subject=${encodeURIComponent(subject)}` +
-        `&body=${encodeURIComponent(body)}`;
-
-      window.location.href = mailto;
-    });
-  }
-
-  const languageSelect = document.getElementById("languageSelect");
-  if (languageSelect) {
-    languageSelect.addEventListener("change", () => {
-      setTimeout(updateCart, 0);
-    });
-  }
-
-  updateCart();
-});
-</script></body>
 </html>
