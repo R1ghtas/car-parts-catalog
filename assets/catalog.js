@@ -205,6 +205,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================
+     SHOPPING CART DATA
+     ========================= */
+
+  let cart =
+    JSON.parse(
+      localStorage.getItem("partsCart") || "[]"
+    );
+
+
+  /* =========================
      LANGUAGE SWITCHER
      ========================= */
 
@@ -301,9 +311,6 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    updateCart();
-
-
     const search =
       document.getElementById(
         "catalogSearch"
@@ -343,6 +350,8 @@ document.addEventListener("DOMContentLoaded", () => {
         setLanguage(
           event.target.value
         );
+
+        updateCart();
 
       }
     );
@@ -551,14 +560,6 @@ document.addEventListener("DOMContentLoaded", () => {
      SHOPPING CART
      ========================= */
 
-  let cart =
-    JSON.parse(
-      localStorage.getItem(
-        "partsCart"
-      ) || "[]"
-    );
-
-
   const cartButton =
     document.getElementById(
       "cartButton"
@@ -661,6 +662,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="cart-quantity">
 
             <button
+              type="button"
               class="quantity-minus"
               data-index="${index}">
               −
@@ -671,6 +673,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </span>
 
             <button
+              type="button"
               class="quantity-plus"
               data-index="${index}">
               +
@@ -680,6 +683,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
           <button
+            type="button"
             class="remove-cart-item"
             data-index="${index}">
             ${t.remove}
@@ -844,8 +848,9 @@ document.addEventListener("DOMContentLoaded", () => {
           const existing =
             cart.find(
               (item) =>
-                item.barcode ===
-                product.barcode
+                item.barcode === product.barcode &&
+                item.model === product.model &&
+                item.item === product.item
             );
 
 
@@ -880,7 +885,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-  if (cartButton) {
+  if (cartButton && cartPanel) {
 
     cartButton.addEventListener(
       "click",
@@ -896,7 +901,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  if (closeCart) {
+  if (closeCart && cartPanel) {
 
     closeCart.addEventListener(
       "click",
@@ -968,7 +973,9 @@ document.addEventListener("DOMContentLoaded", () => {
           !customerName ||
           !customerName.trim()
         ) {
+
           return;
+
         }
 
 
@@ -984,7 +991,9 @@ document.addEventListener("DOMContentLoaded", () => {
           !customerEmail ||
           !customerEmail.trim()
         ) {
+
           return;
+
         }
 
 
@@ -1151,6 +1160,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
+
+  /* INITIAL CART DRAW */
 
   updateCart();
 
