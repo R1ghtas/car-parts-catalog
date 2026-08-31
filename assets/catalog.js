@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const translations = {
 
     lt: {
-
       browseParts: "Peržiūrėti dalis",
       partsCatalog: "DALIŲ KATALOGAS",
       heroTitle: "Raskite jums reikalingą detalę.",
@@ -32,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
       grillesDescription: "Viršutinės, apatinės ir šoninės grotelės",
 
       viewCatalog: "Peržiūrėti katalogą",
-
       footerText: "Automobilių dalių katalogas",
 
       allCategories: "Visos kategorijos",
@@ -62,6 +60,22 @@ document.addEventListener("DOMContentLoaded", () => {
       clearCart: "Išvalyti",
       remove: "Pašalinti",
       emptyCart: "Krepšelis tuščias",
+
+      customerDetails: "Kontaktinė informacija",
+      customerName: "Vardas / įmonės pavadinimas",
+      customerEmail: "El. paštas",
+      customerPhone: "Telefono numeris",
+      customerComment: "Komentaras",
+      optional: "nebūtina",
+
+      sending: "Siunčiama...",
+      nameRequired: "Įveskite vardą arba įmonės pavadinimą.",
+      emailRequired: "Įveskite el. pašto adresą.",
+      emailInvalid: "Įveskite teisingą el. pašto adresą.",
+
+      orderSuccess: "Užklausa sėkmingai išsiųsta.",
+      orderFailed: "Nepavyko išsiųsti užklausos. Bandykite dar kartą.",
+      connectionFailed: "Nepavyko susisiekti su užsakymų sistema.",
 
       /* BUMPERS */
 
@@ -100,12 +114,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       bumperHolderLeft:
         "Bamperio laikiklis kairėje pusėje"
-
     },
 
 
     en: {
-
       browseParts: "Browse parts",
       partsCatalog: "PARTS CATALOG",
       heroTitle: "Find the part you need.",
@@ -130,7 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
       grillesDescription: "Upper, lower and side grilles",
 
       viewCatalog: "View catalog",
-
       footerText: "Car Parts Catalog",
 
       allCategories: "All categories",
@@ -160,6 +171,22 @@ document.addEventListener("DOMContentLoaded", () => {
       clearCart: "Clear cart",
       remove: "Remove",
       emptyCart: "Cart is empty",
+
+      customerDetails: "Contact information",
+      customerName: "Name / company name",
+      customerEmail: "Email",
+      customerPhone: "Phone number",
+      customerComment: "Comment",
+      optional: "optional",
+
+      sending: "Sending...",
+      nameRequired: "Enter your name or company name.",
+      emailRequired: "Enter your email address.",
+      emailInvalid: "Enter a valid email address.",
+
+      orderSuccess: "Order request sent successfully.",
+      orderFailed: "Could not send the order. Please try again.",
+      connectionFailed: "Could not connect to the ordering system.",
 
       /* BUMPERS */
 
@@ -198,7 +225,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       bumperHolderLeft:
         "Bumper holder left side"
-
     }
 
   };
@@ -215,26 +241,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================
-     LANGUAGE SWITCHER
+     ELEMENTS
      ========================= */
 
   const languageSelect =
     document.getElementById("languageSelect");
 
+  const cartButton =
+    document.getElementById("cartButton");
+
+  const cartPanel =
+    document.getElementById("cartPanel");
+
+  const cartItems =
+    document.getElementById("cartItems");
+
+  const cartCount =
+    document.getElementById("cartCount");
+
+  const closeCart =
+    document.getElementById("closeCart");
+
+  const clearCart =
+    document.getElementById("clearCart");
+
+  const sendOrder =
+    document.getElementById("sendOrder");
+
+
+  /* =========================
+     LANGUAGE
+     ========================= */
 
   function getLanguage() {
-
-    return localStorage.getItem(
-      "catalogLanguage"
-    ) || "lt";
-
+    return localStorage.getItem("catalogLanguage") || "lt";
   }
 
 
   function setLanguage(language) {
 
-    document.documentElement.lang =
-      language;
+    document.documentElement.lang = language;
 
 
     document
@@ -244,15 +290,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const key =
           element.getAttribute("data-i18n");
 
-
         if (
           translations[language] &&
           translations[language][key]
         ) {
-
           element.textContent =
             translations[language][key];
-
         }
 
       });
@@ -267,39 +310,29 @@ document.addEventListener("DOMContentLoaded", () => {
             "data-i18n-placeholder"
           );
 
-
         if (
           translations[language] &&
           translations[language][key]
         ) {
-
           element.placeholder =
             translations[language][key];
-
         }
 
       });
 
-
-    /* STOCK TRANSLATION */
 
     document
       .querySelectorAll("[data-stock]")
       .forEach((element) => {
 
         if (element.dataset.stock === "in") {
-
           element.textContent =
             translations[language].inStock;
-
         }
 
-
         if (element.dataset.stock === "out") {
-
           element.textContent =
             translations[language].outStock;
-
         }
 
       });
@@ -311,22 +344,444 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    const search =
-      document.getElementById(
-        "catalogSearch"
-      );
+    updateCustomerFormLanguage();
 
+
+    const search =
+      document.getElementById("catalogSearch");
 
     if (search) {
-
       search.dispatchEvent(
         new Event("input")
       );
+    }
+
+  }
+
+
+  /* =========================
+     CUSTOMER FORM IN CART
+     ========================= */
+
+  function createCustomerForm() {
+
+    if (!cartPanel || !sendOrder) {
+      return;
+    }
+
+
+    if (
+      document.getElementById(
+        "customerOrderForm"
+      )
+    ) {
+      return;
+    }
+
+
+    const form =
+      document.createElement("div");
+
+
+    form.id =
+      "customerOrderForm";
+
+
+    form.className =
+      "customer-order-form";
+
+
+    form.innerHTML = `
+
+      <h3 id="customerFormTitle">
+        Contact information
+      </h3>
+
+
+      <div class="customer-field">
+
+        <label for="customerName">
+          Name / company name *
+        </label>
+
+        <input
+          id="customerName"
+          type="text"
+          autocomplete="name"
+        >
+
+      </div>
+
+
+      <div class="customer-field">
+
+        <label for="customerEmail">
+          Email *
+        </label>
+
+        <input
+          id="customerEmail"
+          type="email"
+          autocomplete="email"
+        >
+
+      </div>
+
+
+      <div class="customer-field">
+
+        <label for="customerPhone">
+          Phone number
+        </label>
+
+        <input
+          id="customerPhone"
+          type="tel"
+          autocomplete="tel"
+        >
+
+      </div>
+
+
+      <div class="customer-field">
+
+        <label for="customerComment">
+          Comment
+        </label>
+
+        <textarea
+          id="customerComment"
+          rows="3"
+        ></textarea>
+
+      </div>
+
+
+      <div
+        id="orderStatus"
+        class="order-status"
+      ></div>
+
+    `;
+
+
+    const cartActions =
+      cartPanel.querySelector(
+        ".cart-actions"
+      );
+
+
+    if (cartActions) {
+
+      cartPanel.insertBefore(
+        form,
+        cartActions
+      );
+
+    } else {
+
+      cartPanel.appendChild(
+        form
+      );
+
+    }
+
+
+    addCustomerFormStyles();
+
+    updateCustomerFormLanguage();
+
+  }
+
+
+  function addCustomerFormStyles() {
+
+    if (
+      document.getElementById(
+        "customerFormStyles"
+      )
+    ) {
+      return;
+    }
+
+
+    const style =
+      document.createElement("style");
+
+
+    style.id =
+      "customerFormStyles";
+
+
+    style.textContent = `
+
+      .customer-order-form {
+        margin-top: 28px;
+        padding-top: 22px;
+        border-top: 1px solid #2b313c;
+      }
+
+
+      .customer-order-form h3 {
+        margin: 0 0 18px;
+        font-size: 1rem;
+        color: #f5f7fb;
+      }
+
+
+      .customer-field {
+        margin-bottom: 14px;
+      }
+
+
+      .customer-field label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: .82rem;
+        font-weight: 700;
+        color: #d8dde6;
+      }
+
+
+      .customer-field input,
+      .customer-field textarea {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 11px 12px;
+        border: 1px solid #343b47;
+        border-radius: 8px;
+        background: #101319;
+        color: #ffffff;
+        font: inherit;
+        outline: none;
+      }
+
+
+      .customer-field textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+
+
+      .customer-field input:focus,
+      .customer-field textarea:focus {
+        border-color: #ffffff;
+      }
+
+
+      .customer-field input.input-error {
+        border-color: #d95c5c;
+      }
+
+
+      .order-status {
+        display: none;
+        margin-top: 12px;
+        padding: 11px 12px;
+        border-radius: 8px;
+        font-size: .88rem;
+        line-height: 1.4;
+      }
+
+
+      .order-status.error {
+        display: block;
+        background: #3b2020;
+        color: #ffb8b8;
+        border: 1px solid #633434;
+      }
+
+
+      .order-status.success {
+        display: block;
+        background: #1e3824;
+        color: #bce8c5;
+        border: 1px solid #315b3b;
+      }
+
+
+      #sendOrder:disabled {
+        opacity: .6;
+        cursor: wait;
+      }
+
+    `;
+
+
+    document.head.appendChild(
+      style
+    );
+
+  }
+
+
+  function updateCustomerFormLanguage() {
+
+    const language =
+      getLanguage();
+
+    const t =
+      translations[language];
+
+
+    const title =
+      document.getElementById(
+        "customerFormTitle"
+      );
+
+    const name =
+      document.getElementById(
+        "customerName"
+      );
+
+    const email =
+      document.getElementById(
+        "customerEmail"
+      );
+
+    const phone =
+      document.getElementById(
+        "customerPhone"
+      );
+
+    const comment =
+      document.getElementById(
+        "customerComment"
+      );
+
+
+    if (title) {
+      title.textContent =
+        t.customerDetails;
+    }
+
+
+    if (name) {
+
+      const label =
+        document.querySelector(
+          'label[for="customerName"]'
+        );
+
+      if (label) {
+        label.textContent =
+          `${t.customerName} *`;
+      }
+
+      name.placeholder =
+        t.customerName;
+
+    }
+
+
+    if (email) {
+
+      const label =
+        document.querySelector(
+          'label[for="customerEmail"]'
+        );
+
+      if (label) {
+        label.textContent =
+          `${t.customerEmail} *`;
+      }
+
+      email.placeholder =
+        t.customerEmail;
+
+    }
+
+
+    if (phone) {
+
+      const label =
+        document.querySelector(
+          'label[for="customerPhone"]'
+        );
+
+      if (label) {
+        label.textContent =
+          `${t.customerPhone} (${t.optional})`;
+      }
+
+      phone.placeholder =
+        t.customerPhone;
+
+    }
+
+
+    if (comment) {
+
+      const label =
+        document.querySelector(
+          'label[for="customerComment"]'
+        );
+
+      if (label) {
+        label.textContent =
+          `${t.customerComment} (${t.optional})`;
+      }
+
+      comment.placeholder =
+        t.customerComment;
 
     }
 
   }
 
+
+  function showOrderStatus(
+    message,
+    type
+  ) {
+
+    const status =
+      document.getElementById(
+        "orderStatus"
+      );
+
+
+    if (!status) {
+      return;
+    }
+
+
+    status.textContent =
+      message;
+
+
+    status.className =
+      `order-status ${type}`;
+
+  }
+
+
+  function clearOrderStatus() {
+
+    const status =
+      document.getElementById(
+        "orderStatus"
+      );
+
+
+    if (!status) {
+      return;
+    }
+
+
+    status.textContent =
+      "";
+
+
+    status.className =
+      "order-status";
+
+  }
+
+
+  /* =========================
+     LANGUAGE SWITCHER
+     ========================= */
 
   if (languageSelect) {
 
@@ -364,19 +819,27 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================= */
 
   const modal =
-    document.getElementById("imageModal");
+    document.getElementById(
+      "imageModal"
+    );
 
   const modalImage =
-    document.getElementById("modalImage");
+    document.getElementById(
+      "modalImage"
+    );
 
   const closeButton =
-    document.getElementById("modalClose");
+    document.getElementById(
+      "modalClose"
+    );
 
 
   if (modal && modalImage) {
 
     document
-      .querySelectorAll(".thumb-button")
+      .querySelectorAll(
+        ".thumb-button"
+      )
       .forEach((button) => {
 
         button.addEventListener(
@@ -384,10 +847,14 @@ document.addEventListener("DOMContentLoaded", () => {
           () => {
 
             const image =
-              button.querySelector("img");
+              button.querySelector(
+                "img"
+              );
 
 
-            if (!image) return;
+            if (!image) {
+              return;
+            }
 
 
             modalImage.src =
@@ -439,10 +906,10 @@ document.addEventListener("DOMContentLoaded", () => {
       "click",
       (event) => {
 
-        if (event.target === modal) {
-
+        if (
+          event.target === modal
+        ) {
           closeModal();
-
         }
 
       }
@@ -455,7 +922,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (
           event.key === "Escape" &&
-          modal.classList.contains("open")
+          modal.classList.contains(
+            "open"
+          )
         ) {
 
           closeModal();
@@ -557,44 +1026,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================
-     SHOPPING CART
+     CART FUNCTIONS
      ========================= */
-
-  const cartButton =
-    document.getElementById(
-      "cartButton"
-    );
-
-  const cartPanel =
-    document.getElementById(
-      "cartPanel"
-    );
-
-  const cartItems =
-    document.getElementById(
-      "cartItems"
-    );
-
-  const cartCount =
-    document.getElementById(
-      "cartCount"
-    );
-
-  const closeCart =
-    document.getElementById(
-      "closeCart"
-    );
-
-  const clearCart =
-    document.getElementById(
-      "clearCart"
-    );
-
-  const sendOrder =
-    document.getElementById(
-      "sendOrder"
-    );
-
 
   function saveCart() {
 
@@ -608,32 +1041,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function updateCart() {
 
-    if (!cartItems) return;
+    if (!cartItems) {
+      return;
+    }
 
 
     const language =
       getLanguage();
 
-
     const t =
       translations[language];
 
 
-    cartItems.innerHTML = "";
+    cartItems.innerHTML =
+      "";
 
 
-    let totalQuantity = 0;
+    let totalQuantity =
+      0;
 
 
     cart.forEach(
       (product, index) => {
 
         totalQuantity +=
-          product.quantity;
+          Number(
+            product.quantity || 1
+          );
 
 
         const item =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
 
         item.className =
@@ -700,12 +1140,12 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    if (cart.length === 0) {
+    if (
+      cart.length === 0
+    ) {
 
       cartItems.innerHTML =
-        `<p class="empty-cart">
-          ${t.emptyCart}
-        </p>`;
+        `<p class="empty-cart">${t.emptyCart}</p>`;
 
     }
 
@@ -738,6 +1178,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             saveCart();
+
             updateCart();
 
           }
@@ -778,6 +1219,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             saveCart();
+
             updateCart();
 
           }
@@ -809,6 +1251,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             saveCart();
+
             updateCart();
 
           }
@@ -818,6 +1261,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
+
+  /* =========================
+     ADD TO CART
+     ========================= */
 
   document
     .querySelectorAll(
@@ -840,7 +1287,8 @@ document.addEventListener("DOMContentLoaded", () => {
             barcode:
               button.dataset.barcode,
 
-            quantity: 1
+            quantity:
+              1
 
           };
 
@@ -848,9 +1296,12 @@ document.addEventListener("DOMContentLoaded", () => {
           const existing =
             cart.find(
               (item) =>
-                item.barcode === product.barcode &&
-                item.model === product.model &&
-                item.item === product.item
+                item.barcode ===
+                  product.barcode &&
+                item.model ===
+                  product.model &&
+                item.item ===
+                  product.item
             );
 
 
@@ -868,7 +1319,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
           saveCart();
+
           updateCart();
+
+          clearOrderStatus();
 
 
           if (cartPanel) {
@@ -885,7 +1339,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-  if (cartButton && cartPanel) {
+  /* =========================
+     OPEN / CLOSE CART
+     ========================= */
+
+  if (
+    cartButton &&
+    cartPanel
+  ) {
 
     cartButton.addEventListener(
       "click",
@@ -901,7 +1362,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  if (closeCart && cartPanel) {
+  if (
+    closeCart &&
+    cartPanel
+  ) {
 
     closeCart.addEventListener(
       "click",
@@ -926,7 +1390,10 @@ document.addEventListener("DOMContentLoaded", () => {
         cart = [];
 
         saveCart();
+
         updateCart();
+
+        clearOrderStatus();
 
       }
     );
@@ -947,13 +1414,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const language =
           getLanguage();
 
+        const t =
+          translations[language];
 
-        if (cart.length === 0) {
 
-          alert(
-            language === "lt"
-              ? "Krepšelis tuščias."
-              : "Your cart is empty."
+        clearOrderStatus();
+
+
+        if (
+          cart.length === 0
+        ) {
+
+          showOrderStatus(
+            t.emptyCart,
+            "error"
           );
 
           return;
@@ -962,70 +1436,114 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         const customerName =
-          prompt(
-            language === "lt"
-              ? "Įveskite vardą / įmonės pavadinimą:"
-              : "Enter your name / company name:"
+          document.getElementById(
+            "customerName"
           );
-
-
-        if (
-          !customerName ||
-          !customerName.trim()
-        ) {
-
-          return;
-
-        }
-
 
         const customerEmail =
-          prompt(
-            language === "lt"
-              ? "Įveskite el. pašto adresą:"
-              : "Enter your email address:"
+          document.getElementById(
+            "customerEmail"
+          );
+
+        const customerPhone =
+          document.getElementById(
+            "customerPhone"
+          );
+
+        const customerComment =
+          document.getElementById(
+            "customerComment"
           );
 
 
+        customerName.classList.remove(
+          "input-error"
+        );
+
+        customerEmail.classList.remove(
+          "input-error"
+        );
+
+
         if (
-          !customerEmail ||
-          !customerEmail.trim()
+          !customerName.value.trim()
         ) {
+
+          customerName.classList.add(
+            "input-error"
+          );
+
+          customerName.focus();
+
+          showOrderStatus(
+            t.nameRequired,
+            "error"
+          );
 
           return;
 
         }
 
 
-        const customerPhone =
-          prompt(
-            language === "lt"
-              ? "Įveskite telefono numerį (nebūtina):"
-              : "Enter your phone number (optional):"
-          ) || "";
+        if (
+          !customerEmail.value.trim()
+        ) {
+
+          customerEmail.classList.add(
+            "input-error"
+          );
+
+          customerEmail.focus();
+
+          showOrderStatus(
+            t.emailRequired,
+            "error"
+          );
+
+          return;
+
+        }
 
 
-        const customerComment =
-          prompt(
-            language === "lt"
-              ? "Komentaras (nebūtina):"
-              : "Comment (optional):"
-          ) || "";
+        const emailPattern =
+          /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+        if (
+          !emailPattern.test(
+            customerEmail.value.trim()
+          )
+        ) {
+
+          customerEmail.classList.add(
+            "input-error"
+          );
+
+          customerEmail.focus();
+
+          showOrderStatus(
+            t.emailInvalid,
+            "error"
+          );
+
+          return;
+
+        }
 
 
         const orderData = {
 
           customerName:
-            customerName.trim(),
+            customerName.value.trim(),
 
           email:
-            customerEmail.trim(),
+            customerEmail.value.trim(),
 
           phone:
-            customerPhone.trim(),
+            customerPhone.value.trim(),
 
           comment:
-            customerComment.trim(),
+            customerComment.value.trim(),
 
           items:
             cart.map(
@@ -1058,27 +1576,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         sendOrder.textContent =
-          language === "lt"
-            ? "Siunčiama..."
-            : "Sending...";
+          t.sending;
 
 
         try {
 
           const response =
             await fetch(
-              "https://www.silentservice.lt/_functions/order?rc=test-site",
+              "https://silentservice.lt/_functions/order?rc=test-site",
               {
-                method: "POST",
+
+                method:
+                  "POST",
 
                 headers: {
-                  "Content-Type": "application/json"
+                  "Content-Type":
+                    "application/json"
                 },
 
                 body:
                   JSON.stringify(
                     orderData
                   )
+
               }
             );
 
@@ -1092,13 +1612,6 @@ document.addEventListener("DOMContentLoaded", () => {
             result.success
           ) {
 
-            alert(
-              language === "lt"
-                ? `Užklausa sėkmingai išsiųsta.\nUžsakymo numeris: ${result.orderNumber}`
-                : `Order sent successfully.\nOrder number: ${result.orderNumber}`
-            );
-
-
             cart = [];
 
             saveCart();
@@ -1106,13 +1619,23 @@ document.addEventListener("DOMContentLoaded", () => {
             updateCart();
 
 
-            if (cartPanel) {
+            customerName.value =
+              "";
 
-              cartPanel.classList.remove(
-                "open"
-              );
+            customerEmail.value =
+              "";
 
-            }
+            customerPhone.value =
+              "";
+
+            customerComment.value =
+              "";
+
+
+            showOrderStatus(
+              `${t.orderSuccess} ${language === "lt" ? "Užsakymo numeris" : "Order number"}: ${result.orderNumber}`,
+              "success"
+            );
 
           } else {
 
@@ -1122,10 +1645,9 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-            alert(
-              language === "lt"
-                ? "Nepavyko išsiųsti užklausos. Bandykite dar kartą."
-                : "Could not send the order. Please try again."
+            showOrderStatus(
+              t.orderFailed,
+              "error"
             );
 
           }
@@ -1138,10 +1660,9 @@ document.addEventListener("DOMContentLoaded", () => {
           );
 
 
-          alert(
-            language === "lt"
-              ? "Nepavyko susisiekti su užsakymų sistema."
-              : "Could not connect to the ordering system."
+          showOrderStatus(
+            t.connectionFailed,
+            "error"
           );
 
         } finally {
@@ -1161,7 +1682,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* INITIAL CART DRAW */
+  /* =========================
+     INITIALIZE
+     ========================= */
+
+  createCustomerForm();
 
   updateCart();
 
