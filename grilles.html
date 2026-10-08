@@ -260,6 +260,13 @@ English
 
 All categories
 
+<a
+        class="button button-outline"
+        href="contact.html"
+        data-i18n="contact"
+      >
+        Contact
+      </a>
 </a>
 
 </div>
@@ -411,6 +418,7 @@ Available
   aria-label="Open photo of Grille Top"
   class="thumb-button"
   type="button"
+  data-photos="images/grilles/part-1.jpg,images/grilles/part-1-1.jpg"
 >
 
 <img
@@ -475,6 +483,7 @@ Available
   aria-label="Open photo of Grille Bottom"
   class="thumb-button"
   type="button"
+  data-photos="images/grilles/part-2.jpg,images/grilles/part-2-1.jpg,images/grilles/part-2-2.jpg,images/grilles/part-2-3.jpg,images/grilles/part-2-4.jpg,images/grilles/part-2-5.jpg,images/grilles/part-2-6.jpg"
 >
 
 <img
@@ -539,6 +548,7 @@ Available
   aria-label="Open photo of Front Centre Grille"
   class="thumb-button"
   type="button"
+  data-photos="images/grilles/part-3.jpg,images/grilles/part-3-1.jpg,images/grilles/part-3-2.jpg,images/grilles/part-3-3.jpg,images/grilles/part-3-4.jpg,images/grilles/part-3-5.jpg"
 >
 
 <img
@@ -731,6 +741,7 @@ Available
   aria-label="Open photo of Bumper front radiator grille"
   class="thumb-button"
   type="button"
+  data-photos="images/grilles/part-6.jpg,images/grilles/part-6-1.jpg,images/grilles/part-6-2.jpg"
 >
 
 <img
@@ -795,6 +806,7 @@ Available
   aria-label="Open photo of Front radiator grille molding"
   class="thumb-button"
   type="button"
+  data-photos="images/grilles/part-7.jpg,images/grilles/part-7-1.jpg,images/grilles/part-7-2.jpg,images/grilles/part-7-3.jpg,images/grilles/part-7-4.jpg,images/grilles/part-7-5.jpg,images/grilles/part-7-6.jpg,images/grilles/part-7-7.jpg"
 >
 
 <img
@@ -1204,7 +1216,7 @@ function setCatalogLanguage(
 const savedLanguage =
   localStorage.getItem(
     "catalogLanguage"
-  ) || "lt";
+  ) || "en";
 
 
 languageSelect.value =

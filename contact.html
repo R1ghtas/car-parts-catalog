@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Contact | Car Parts Catalog</title>
+
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    .contact-head {
+      padding: 60px 0 30px;
+    }
+
+    .contact-head h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      margin-bottom: 16px;
+    }
+
+    .contact-head p {
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      padding: 20px 0 85px;
+    }
+
+    .contact-card {
+      padding: 26px 28px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .05);
+    }
+
+    .contact-card .eyebrow {
+      margin-bottom: 10px;
+    }
+
+    .contact-card .value {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: #111;
+    }
+
+    .contact-card a.value:hover {
+      color: var(--gold);
+    }
+
+    @media (max-width: 700px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="container nav">
+
+    <a href="index.html" class="brand">
+      <img
+        src="logo.png"
+        alt="SilentService logo"
+        class="brand-logo"
+      >
+    </a>
+
+    <div class="header-actions">
+
+      <select
+        id="languageSelect"
+        class="language-select"
+      >
+        <option value="lt">lietuvių</option>
+        <option value="en">English</option>
+      </select>
+
+      <a
+        class="button"
+        href="index.html"
+        data-i18n="allCategories"
+      >
+        All categories
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<main class="container">
+
+  <section class="contact-head">
+
+    <div class="eyebrow" data-i18n="contactEyebrow">
+      Contact
+    </div>
+
+    <h1 data-i18n="contactTitle">
+      Get in touch
+    </h1>
+
+    <p data-i18n="contactDescription">
+      Have a question about a part or your order request? Contact us using the details below.
+    </p>
+
+  </section>
+
+
+  <section class="contact-grid">
+
+    <!-- CHANGE THE VALUES BELOW TO YOUR REAL DETAILS -->
+
+    <div class="contact-card">
+      <div class="eyebrow" data-i18n="phoneLabel">Phone</div>
+      <a class="value" href="tel:+37060000000">+370 600 00000</a>
+    </div>
+
+    <div class="contact-card">
+      <div class="eyebrow" data-i18n="emailLabel">Email</div>
+      <a class="value" href="mailto:silentservice@gmail.com">silentservice@gmail.com</a>
+    </div>
+
+  
+
+
+
+  </section>
+
+</main>
+
+
+<footer class="footer">
+
+  <div class="container">
+    Car Parts Catalog • Contact
+  </div>
+
+</footer>
+
+
+<script>
+const translations = {
+  lt: {
+    allCategories: "Visos kategorijos",
+    contactEyebrow: "KONTAKTAI",
+    contactTitle: "Susisiekite",
+    contactDescription: "Turite klausimų apie detalę ar savo užklausą? Susisiekite naudodami žemiau pateiktus kontaktus.",
+    phoneLabel: "TELEFONAS",
+    emailLabel: "EL. PAŠTAS",
+    addressLabel: "ADRESAS",
+    hoursLabel: "DARBO LAIKAS",
+    hoursValue: "I–V 9:00–18:00"
+  },
+
+  en: {
+    allCategories: "All categories",
+    contactEyebrow: "CONTACT",
+    contactTitle: "Get in touch",
+    contactDescription: "Have a question about a part or your order request? Contact us using the details below.",
+    phoneLabel: "PHONE",
+    emailLabel: "EMAIL",
+    addressLabel: "ADDRESS",
+    hoursLabel: "WORKING HOURS",
+    hoursValue: "Mon–Fri 9:00–18:00"
+  }
+};
+
+const languageSelect = document.getElementById("languageSelect");
+
+function setLanguage(language) {
+  document.documentElement.lang = language;
+
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    const key = element.dataset.i18n;
+
+    if (translations[language][key]) {
+      element.textContent = translations[language][key];
+    }
+  });
+
+  localStorage.setItem("catalogLanguage", language);
+}
+
+const savedLanguage = localStorage.getItem("catalogLanguage") || "en";
+
+languageSelect.value = savedLanguage;
+setLanguage(savedLanguage);
+
+languageSelect.addEventListener("change", function () {
+  setLanguage(this.value);
+});
+</script>
+
+</body>
+</html>

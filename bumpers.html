@@ -257,6 +257,14 @@
         href="index.html"
       >
         All categories
+
+        <a
+        class="button button-outline"
+        href="contact.html"
+        data-i18n="contact"
+      >
+        Contact
+      </a>
       </a>
 
     </div>
@@ -406,10 +414,11 @@
               aria-label="Open photo of Front Bumper"
               class="thumb-button"
               type="button"
+              data-photos="images/bumpers/part-1.jpg,images/bumpers/part-1-2.jpg,images/bumpers/part-1-3.jpg,images/bumpers/part-1-4.jpg,images/bumpers/part-1-5.jpg,images/bumpers/part-1-6.jpg"
             >
 
               <img
-                alt="Toyota Prius Plus Facelift 2015- — Front Bumper"
+                alt="Toyota Prius Plus Facelift 2015 — Front Bumper"
                 src="images/bumpers/part-1.jpg"
               />
 
@@ -439,7 +448,7 @@
         <tr>
 
           <td>
-            Toyota Prius Plus Facelift 2015-
+            Toyota Prius Plus Facelift 2015
           </td>
 
           <td
@@ -470,6 +479,7 @@
               aria-label="Open photo of Rear Bumper"
               class="thumb-button"
               type="button"
+              data-photos="images/bumpers/part-2.jpg,images/bumpers/part-2-1.jpg,images/bumpers/part-2-2.jpg,images/bumpers/part-2-3.jpg,images/bumpers/part-2-4.jpg,images/bumpers/part-2-5.jpg"
             >
 
               <img
@@ -790,6 +800,7 @@
               aria-label="Open photo"
               class="thumb-button"
               type="button"
+              data-photos="images/bumpers/part-7.jpg,images/bumpers/part-7-1.jpg,images/bumpers/part-7-2.jpg,images/bumpers/part-7-3.jpg,images/bumpers/part-7-4.jpg,images/bumpers/part-7-5.jpg,images/bumpers/part-7-6.jpg"
             >
 
               <img
@@ -918,6 +929,7 @@
               aria-label="Open photo"
               class="thumb-button"
               type="button"
+              data-photos="images/bumpers/part-9.jpg,images/bumpers/part-9-1.jpg,images/bumpers/part-9-2.jpg"
             >
 
               <img
@@ -982,6 +994,7 @@
               aria-label="Open photo"
               class="thumb-button"
               type="button"
+              data-photos="images/bumpers/part-10.jpg,images/bumpers/part-10-1.jpg,images/bumpers/part-10-2.jpg,images/bumpers/part-10-3.jpg"
             >
 
               <img
@@ -1046,6 +1059,7 @@
               aria-label="Open photo"
               class="thumb-button"
               type="button"
+              data-photos="images/bumpers/part-10.jpg,images/bumpers/part-10-1.jpg,images/bumpers/part-10-2.jpg,images/bumpers/part-10-3.jpg"
             >
 
               <img
@@ -1489,7 +1503,7 @@ function setCatalogLanguage(language) {
 const savedLanguage =
   localStorage.getItem(
     "catalogLanguage"
-  ) || "lt";
+  ) || "en";
 
 
 languageSelect.value =

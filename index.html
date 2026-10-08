@@ -27,6 +27,10 @@
         Browse parts
       </a>
 
+        <a href="contact.html" class="button button-outline" data-i18n="contact">
+        Contacts
+      </a>
+
     </div>
 
   </div>
@@ -79,7 +83,7 @@
 
       <a class="category-card" href="bumpers.html">
 
-        <div class="category-cover">
+        <div class="category-cover" style="--cover: url('../images/categories/Bumper.jpg')">
 
           <h3 data-i18n="bumpers">
             Bumpers
@@ -106,7 +110,7 @@
 
       <a class="category-card" href="headlights.html">
 
-        <div class="category-cover">
+        <div class="category-cover" style="--cover: url('../images/categories/headlight.jpg')">
 
           <h3 data-i18n="headlights">
             Headlights
@@ -133,7 +137,7 @@
 
       <a class="category-card" href="fenders.html">
 
-        <div class="category-cover">
+        <div class="category-cover" style="--cover: url('../images/categories/fender.jpg')">
 
           <h3 data-i18n="fenders">
             Fenders
@@ -160,7 +164,7 @@
 
       <a class="category-card" href="grilles.html">
 
-        <div class="category-cover">
+        <div class="category-cover" style="--cover: url('../images/categories/grille.jpg')">
 
           <h3 data-i18n="grilles">
             Grilles
@@ -168,6 +172,31 @@
 
           <p data-i18n="grillesDescription">
             Upper, lower and side grilles
+          </p>
+
+        </div>
+
+        <div class="card-body">
+
+          <span data-i18n="viewCatalog">
+            View catalog
+          </span>
+
+          <span class="arrow">→</span>
+
+        </div>
+
+      </a>
+            <a class="category-card" href="steering-rack.html">
+
+        <div class="category-cover" style="--cover: url('../images/categories/steering-rack.png')">
+
+          <h3 data-i18n="steeringRack">
+            Steering Rack
+          </h3>
+
+          <p data-i18n="steeringRackDescription">
+            Steering racks
           </p>
 
         </div>
@@ -204,6 +233,7 @@
 const translations = {
   lt: {
     browseParts: "Peržiūrėti dalis",
+    contact: "Kontaktai",
     partsCatalog: "DALIŲ KATALOGAS",
     heroTitle: "Raskite jums reikalingą detalę.",
     heroDescription: "Pasirinkite kategoriją ir peržiūrėkite turimas automobilių dalis. Kataloge rasite automobilio modelį, detalės pavadinimą, detalės kodą, informaciją apie likutį ir nuotrauką.",
@@ -218,12 +248,15 @@ const translations = {
     fendersDescription: "Priekinių ir galinių sparnų dalys",
     grilles: "Grotelės",
     grillesDescription: "Viršutinės, apatinės ir šoninės grotelės",
+    steeringRack: "Vairo kremaliera",
+    steeringRackDescription: "Vairo kremalieros",
     viewCatalog: "Peržiūrėti katalogą",
     footerText: "Automobilių dalių katalogas • Tik peržiūrai"
   },
 
   en: {
     browseParts: "Browse parts",
+    contact: "Contacts",
     partsCatalog: "PARTS CATALOG",
     heroTitle: "Find the part you need.",
     heroDescription: "Choose a category to browse available car parts. Each catalog shows the vehicle model, item name, barcode, availability and photo.",
@@ -238,6 +271,8 @@ const translations = {
     fendersDescription: "Front and rear fender parts",
     grilles: "Grilles",
     grillesDescription: "Upper, lower and side grilles",
+    steeringRack: "Steering Rack",
+    steeringRackDescription: "Steering racks",
     viewCatalog: "View catalog",
     footerText: "Car Parts Catalog • View-only catalog"
   }
@@ -259,7 +294,7 @@ function setLanguage(language) {
   localStorage.setItem("catalogLanguage", language);
 }
 
-const savedLanguage = localStorage.getItem("catalogLanguage") || "lt";
+const savedLanguage = localStorage.getItem("catalogLanguage") || "en";
 
 languageSelect.value = savedLanguage;
 setLanguage(savedLanguage);
