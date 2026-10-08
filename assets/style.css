@@ -266,30 +266,57 @@ h1 {
 
 
 .category-cover {
-  min-height: 175px;
-  padding: 24px;
+  padding: 16px 24px 22px;
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
 
-  background: #f7f7f7;
+  background-color: #ffffff;
 
   border-bottom: 1px solid #e5e5e5;
 }
 
 
+.category-cover::before {
+  content: "";
+  display: block;
+  flex-shrink: 0;
+
+  width: 100%;
+  height: 140px;
+  margin-bottom: 14px;
+  transform: scale(1.35);
+
+  background-image: var(--cover, none);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  mix-blend-mode: multiply;
+  transition: transform .25s ease;
+}
+
+
+.category-card:hover .category-cover::before {
+  transform: scale(1.45);
+}
+
+
 .category-cover h3 {
-  margin: 0 0 7px;
-  font-size: 2rem;
+  margin: 0 0 6px;
+  font-size: 2.0rem;
 }
 
 
 .category-cover p {
   margin: 0;
   color: var(--muted);
+  font-size: .95rem;
   line-height: 1.45;
 }
+
 
 
 .card-body {
@@ -778,6 +805,70 @@ h1 {
   font-size: .9rem;
 }
 
+.button-outline {
+  background: #fff;
+  color: var(--gold);
+}
+
+.button-outline:hover {
+  background: var(--gold);
+  color: #fff;
+}
+
+.modal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 46px;
+  height: 46px;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, .92);
+  color: #111;
+
+  font-size: 32px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .35);
+}
+
+.modal-arrow:hover {
+  background: #fff;
+}
+
+.modal-prev {
+  left: -64px;
+}
+
+.modal-next {
+  right: -64px;
+}
+
+.modal-counter {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 5px 12px;
+
+  background: rgba(0, 0, 0, .6);
+  color: #fff;
+
+  border-radius: 20px;
+
+  font-size: .85rem;
+}
+
 
 /* RESPONSIVE */
 
@@ -830,4 +921,14 @@ h1 {
     max-height: 82vh;
   }
 
+}
+
+@media (max-width: 700px) {
+  .modal-prev {
+    left: 8px;
+  }
+
+  .modal-next {
+    right: 8px;
+  }
 }

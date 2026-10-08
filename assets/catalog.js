@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const translations = {
 
     lt: {
+      contact: "Kontaktai",
       browseParts: "Peržiūrėti dalis",
       partsCatalog: "DALIŲ KATALOGAS",
       heroTitle: "Raskite jums reikalingą detalę.",
@@ -16,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       categories: "KATEGORIJOS",
       choosePart: "Pasirinkite detalę",
-      categoryCount: "5 kategorijos",
+      categoryCount: "6 kategorijos",
 
       bumpers: "Bamperiai",
       bumpersDescription: "Priekiniai ir galiniai bamperiai",
@@ -29,6 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       grilles: "Grotelės",
       grillesDescription: "Viršutinės, apatinės ir šoninės grotelės",
+
+      steeringRack: "Vairo kolonėlės",
+      steeringRackDescription: "Vairo kremalieros",
 
       viewCatalog: "Peržiūrėti katalogą",
       footerText: "Automobilių dalių katalogas",
@@ -114,10 +118,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       bumperHolderLeft:
         "Bamperio laikiklis kairėje pusėje"
+        
     },
 
 
     en: {
+      contact: "Contacts",
       browseParts: "Browse parts",
       partsCatalog: "PARTS CATALOG",
       heroTitle: "Find the part you need.",
@@ -127,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       categories: "CATEGORIES",
       choosePart: "Choose a part",
-      categoryCount: "5 categories",
+      categoryCount: "6 categories",
 
       bumpers: "Bumpers",
       bumpersDescription: "Front and rear bumpers",
@@ -140,6 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       grilles: "Grilles",
       grillesDescription: "Upper, lower and side grilles",
+
+      steeringRack: "Steering Rack",
+      steeringRackDescription: "Steering racks",
 
       viewCatalog: "View catalog",
       footerText: "Car Parts Catalog",
@@ -274,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================= */
 
   function getLanguage() {
-    return localStorage.getItem("catalogLanguage") || "lt";
+    return localStorage.getItem("catalogLanguage") || "en";
   }
 
 
@@ -815,124 +824,194 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================
-     IMAGE MODAL
+     IMAGE MODAL (WITH GALLERY)
      ========================= */
 
   const modal =
-    document.getElementById(
-      "imageModal"
-    );
+    document.getElementById("imageModal");
 
   const modalImage =
-    document.getElementById(
-      "modalImage"
-    );
+    document.getElementById("modalImage");
 
   const closeButton =
-    document.getElementById(
-      "modalClose"
-    );
+    document.getElementById("modalClose");
 
 
   if (modal && modalImage) {
 
+    let gallery = [];
+    let galleryIndex = 0;
+    let galleryAlt = "";
+
+    const modalPanel =
+      modal.querySelector(".modal-panel");
+
+
+    const prevButton =
+      document.createElement("button");
+
+    prevButton.type = "button";
+    prevButton.className = "modal-arrow modal-prev";
+    prevButton.setAttribute("aria-label", "Previous photo");
+    prevButton.textContent = "‹";
+
+
+    const nextButton =
+      document.createElement("button");
+
+    nextButton.type = "button";
+    nextButton.className = "modal-arrow modal-next";
+    nextButton.setAttribute("aria-label", "Next photo");
+    nextButton.textContent = "›";
+
+
+    const counter =
+      document.createElement("div");
+
+    counter.className = "modal-counter";
+
+
+    modalPanel.appendChild(prevButton);
+    modalPanel.appendChild(nextButton);
+    modalPanel.appendChild(counter);
+
+
+    const showPhoto = (index) => {
+
+      galleryIndex = index;
+
+      modalImage.src = gallery[index];
+      modalImage.alt = galleryAlt;
+
+      const many = gallery.length > 1;
+
+      prevButton.style.display =
+        many && index > 0 ? "flex" : "none";
+
+      nextButton.style.display =
+        many && index < gallery.length - 1 ? "flex" : "none";
+
+      counter.style.display = many ? "block" : "none";
+      counter.textContent = `${index + 1} / ${gallery.length}`;
+
+    };
+
+
+    const goNext = () => {
+      if (galleryIndex < gallery.length - 1) {
+        showPhoto(galleryIndex + 1);
+      }
+    };
+
+
+    const goPrev = () => {
+      if (galleryIndex > 0) {
+        showPhoto(galleryIndex - 1);
+      }
+    };
+
+
+    prevButton.addEventListener("click", goPrev);
+    nextButton.addEventListener("click", goNext);
+
+
     document
-      .querySelectorAll(
-        ".thumb-button"
-      )
+      .querySelectorAll(".thumb-button")
       .forEach((button) => {
 
-        button.addEventListener(
-          "click",
-          () => {
+        button.addEventListener("click", () => {
 
-            const image =
-              button.querySelector(
-                "img"
-              );
+          const image = button.querySelector("img");
 
-
-            if (!image) {
-              return;
-            }
-
-
-            modalImage.src =
-              image.src;
-
-            modalImage.alt =
-              image.alt;
-
-
-            modal.classList.add(
-              "open"
-            );
-
-
-            document.body.style.overflow =
-              "hidden";
-
+          if (!image) {
+            return;
           }
-        );
+
+          const list =
+            (button.dataset.photos || "")
+              .split(",")
+              .map((item) => item.trim())
+              .filter(Boolean);
+
+          gallery = list.length ? list : [image.src];
+          galleryAlt = image.alt;
+
+          modal.classList.add("open");
+          document.body.style.overflow = "hidden";
+
+          showPhoto(0);
+
+        });
 
       });
 
 
     const closeModal = () => {
 
-      modal.classList.remove(
-        "open"
-      );
+      modal.classList.remove("open");
 
-      modalImage.src = "";
+      modalImage.removeAttribute("src");
 
-      document.body.style.overflow =
-        "";
+      document.body.style.overflow = "";
 
     };
 
 
     if (closeButton) {
-
-      closeButton.addEventListener(
-        "click",
-        closeModal
-      );
-
+      closeButton.addEventListener("click", closeModal);
     }
 
 
-    modal.addEventListener(
-      "click",
-      (event) => {
+    modal.addEventListener("click", (event) => {
 
-        if (
-          event.target === modal
-        ) {
-          closeModal();
-        }
-
+      if (event.target === modal) {
+        closeModal();
       }
-    );
+
+    });
 
 
-    document.addEventListener(
-      "keydown",
-      (event) => {
+    document.addEventListener("keydown", (event) => {
 
-        if (
-          event.key === "Escape" &&
-          modal.classList.contains(
-            "open"
-          )
-        ) {
-
-          closeModal();
-
-        }
-
+      if (!modal.classList.contains("open")) {
+        return;
       }
-    );
+
+      if (event.key === "Escape") {
+        closeModal();
+      }
+
+      if (event.key === "ArrowRight") {
+        goNext();
+      }
+
+      if (event.key === "ArrowLeft") {
+        goPrev();
+      }
+
+    });
+
+
+    let touchStartX = 0;
+
+    modal.addEventListener("touchstart", (event) => {
+      touchStartX = event.changedTouches[0].clientX;
+    });
+
+    modal.addEventListener("touchend", (event) => {
+
+      const distance =
+        event.changedTouches[0].clientX - touchStartX;
+
+      if (distance < -50) {
+        goNext();
+      }
+
+      if (distance > 50) {
+        goPrev();
+      }
+
+    });
 
   }
 
